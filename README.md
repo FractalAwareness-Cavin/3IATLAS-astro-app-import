@@ -41,14 +41,14 @@ Need step-by-step instructions? Jump to:
 ### Astro Gold instructions
 **macOS**
 1. Copy `geocentric_daily_solarfire.txt` (or the sidereal variant) into `~/Library/Containers/au.com.esotech.AstroGoldMac/Data/Library/Application Support/Astro Gold/Ephemerides/`.
-2. In Astro Gold choose **Astro Gold → Settings… → Points → Custom Points**.
-3. Click **Import** (or **+**), select **Solar Fire Text**, choose the file, and name the body (e.g. `3I/ATLAS`).
-4. Enable the new point.
+2. In Astro Gold choose **Astro Gold → Settings…** and select **Chart → Chart Points** in the sidebar.
+3. Click **Manage Points… → Import**, choose **Solar Fire Text**, pick the file, and name the body (e.g. `3I/ATLAS`).
+4. Tick the new point to enable it.
 
 **iOS / iPadOS**
 1. Place the `.txt` file in `On My iPhone/iPad → Astro Gold → Ephemerides` via the Files app (or Finder when connected to a Mac).
-2. Inside Astro Gold go to **Settings → Points → Custom Points → Import**, choose **Solar Fire Text**, and select the file.
-3. Name/enable the body.
+2. Inside Astro Gold go to **Settings → Chart Points → Manage Points… → Import**, choose **Solar Fire Text**, and select the file.
+3. Name and enable the body.
 
 ### Solar Fire instructions (Windows)
 1. Copy the desired `.txt` file into `Documents\Solar Fire User Files\Ephemerides`.
