@@ -169,62 +169,77 @@ Follow the prompts to enter the target (`DES=1004083;`) and output options. This
 
 
 
-## Linux install of Python
+ ## Linux install of Python
 
-• Most desktop/server Linux installs ship with a Python interpreter because the OS (and many
+  Most desktop/server Linux installs ship with a Python interpreter because the OS (and many
   tools) rely on it, but the default version may be older than 3.10. When you need Python 3.10+
   explicitly, use the package manager for your distribution—or install from source/pyenv if the
   repos are behind. Below are the common CLI commands by family:
 
-  - Debian / Ubuntu / Linux Mint
-      - Check current version: python3 --version
-      - Install latest repo build:
-        sudo apt update && sudo apt install python3 python3-pip
-      - If the official repos lag behind 3.10, add the deadsnakes PPA (Ubuntu-based only):
-        sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt update && sudo apt install
-        python3.10 python3.10-venv python3.10-distutils
-  - Fedora
-      - sudo dnf install python3 (Fedora 35+ already includes ≥3.10)
-  - RHEL / CentOS / Alma / Rocky
-      - Enable CodeReady/PowerTools if needed, then:
-        sudo dnf install python3
-      - For older releases, use Software Collections (SCL) or EPEL modules:
-        sudo dnf module enable python:3.11 && sudo dnf install python3
-  - openSUSE / SLES
-      - sudo zypper install python310 python310-pip
-  - Arch / Manjaro
-      - Arch typically tracks the newest CPython:
-        sudo pacman -S python
-      - For a specific older/newer release use pyenv or AUR packages (e.g., python310).
-  - Gentoo
-      - sudo emerge --ask dev-lang/python:3.11
-      - Then select the default with eselect python list / eselect python set python3.11.
-  - Void Linux
-      - sudo xbps-install -S python3
-  - NixOS / Nix
-      - nix-shell -p python311
-      - Or add python311 to your environment configuration.
+  - **Debian / Ubuntu / Linux Mint**
+    - Check current version: `python3 --version`
+    - Install latest repo build:
+      `sudo apt update && sudo apt install python3 python3-pip`
+    - If the official repos lag behind 3.10, add the deadsnakes PPA (Ubuntu-based only):
+      `sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt update && sudo apt install python3.10
+      python3.10-venv python3.10-distutils`
+
+  - **Fedora**
+    - `sudo dnf install python3` (Fedora 35+ already includes ≥3.10)
+
+  - **RHEL / CentOS / Alma / Rocky**
+    - Enable CodeReady/PowerTools if needed, then:
+      `sudo dnf install python3`
+    - For older releases, use Software Collections (SCL) or EPEL modules:
+      `sudo dnf module enable python:3.11 && sudo dnf install python3`
+
+  - **openSUSE / SLES**
+    - `sudo zypper install python310 python310-pip`
+
+  - **Arch / Manjaro**
+    - Arch typically tracks the newest CPython:
+      `sudo pacman -S python`
+    - For a specific older/newer release use pyenv or AUR packages (e.g., `python310`).
+
+  - **Gentoo**
+    - `sudo emerge --ask dev-lang/python:3.11`
+    - Then select the default with `eselect python list` / `eselect python set python3.11`.
+
+  - **Void Linux**
+    - `sudo xbps-install -S python3`
+
+  - **NixOS / Nix**
+    - `nix-shell -p python311`
+    - Or add `python311` to your environment configuration.
 
   If you’re on a distribution that doesn’t package your desired version, use one of these portable
   approaches:
 
-  1. pyenv
-
+  1. **pyenv**
+     ```bash
      curl https://pyenv.run | bash
      exec $SHELL
      pyenv install 3.12.2
      pyenv global 3.12.2
+
   2. Official source
 
+     ```bash
      sudo apt install build-essential zlib1g-dev libssl-dev libffi-dev
      wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tgz
      tar -xzf Python-3.12.2.tgz
+     cd Python-3.12.2
+     ./configure --enable-optimizations
+     make -j$(nproc)
+     sudo make altinstall
+     ```
+     
+     
 
-  cd Python-3.12.2
-  ./configure --enable-optimizations
-  make -j$(nproc)
-  sudo make altinstall  # installs as python3.12 without replacing system python
+  This installs as python3.12 without replacing system python
 
-  Even if a base system already includes Python, it’s multi-purpose to install your own 3.10+
-  alongside the system interpreter so you don’t break core utilities. Use virtual environments
-  (`python3 -m venv`) to keep project dependencies isolated.
+-----
+
+  Even if a base system already includes Python, it’s best to install your own 3.10+ alongside the
+  system interpreter so you don’t break core utilities. Use virtual environments (python3 -m venv)
+  to keep project dependencies isolated.
