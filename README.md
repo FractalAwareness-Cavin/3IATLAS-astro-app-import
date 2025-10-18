@@ -4,6 +4,8 @@ Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated
 
 These can be used with many apps such as SkySafari/SkyVoyager, Stellarium, KStars and Solar Fire along with others that can use the listed file types. For Astro Gold and TimePassages, unfortunately, there's no way to import new moving bodies. However, we have listed instructions about how to add it as a non-moving body for these apps if desired.
 
+This is a work-in-progress. Some of the apps weren't as easy to modify as imagined, so please be cautious and if anything is difficult or too technical, feel free to [email me](mailto:cavinbirdseyetarot@gmail.com). I'll try to fix it up quickly if possible. I'm still working to make sure all the apps will actually work, so if they don't, then again you may [email me](mailto:cavinbirdseyetarot@gmail.com)).
+
 
 
 ## Where to start?
@@ -24,7 +26,7 @@ Use the folder that matches your app or download the zip files below. If you are
 Each zip contains the files from the matching folder plus a `README.txt` with the instructions below—unzip the bundle before importing into your software.
 
 Need step-by-step instructions? Jump to:
-- [Solar Fire (Windows)](#solar-fire-instructions)
+- [Solar Fire (Windows)](#solar-fire-instructions (Windows))
 - [MPC-format import](#mpc-import-instructions)
 - [CSV usage](#csv-usage-notes)
 - [Astro Gold & TimePassages status](#astro-gold--timepassages-status)
@@ -43,7 +45,14 @@ Need step-by-step instructions? Jump to:
 ### Astro Gold status
 Astro Gold (macOS, iOS, iPadOS) currently exposes only the built-in “Extra Points” catalogue; it does **not** provide an import workflow for third-party ephemerides or orbital elements. Keep an eye on the vendor’s updates—if 3I/ATLAS is added to their catalogue it can be enabled via **Settings → Displayed/Chart Points**.
 
-### Solar Fire instructions (Windows)
+### Solar Fire instructions (Windows) 
+
+> [!WARNING]
+>
+> This is still a work in progress. If you already have extra bodies in your extras.dat, and you replace it with the one here, it will **erase your previous custom astrological bodies.**
+
+
+
 1. Quit Solar Fire and back up `Documents\Solar Fire User Files\Points & Colors\extras.dat`.
 2. Merge the `[3I_ATLAS]` block from `solar-fire/extras.dat` (this repo) into your user `extras.dat` or replace the file if you have no other custom entries.
 3. Relaunch Solar Fire. Under **File → File Types…** choose **Extra Bodies** to confirm the file is active.
