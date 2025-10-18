@@ -127,16 +127,27 @@ You do not need a local Horizons install to use this kit—the data already come
    ```zsh
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
-   
-   
-   
+
+   then:
+
+   ```zsh
+   brew upgrade
+   brew install python
+   ```
+
    b.  If on **Linux** and not installed, see below. 
+
+   
 
 2. Install the official Horizons client via Astroquery:
    ```bash
    python3 -m pip install astroquery --user
    ```
+
+   
+
 3. Query Horizons from the terminal:
+
    ```bash
    python3 - <<'PY'
    from astroquery.jplhorizons import Horizons
@@ -148,19 +159,13 @@ You do not need a local Horizons install to use this kit—the data already come
 
 ​	Astroquery wraps the official service and returns Pandas tables you can export to CSV.
 
-​	Alternative: use `curl` directly (macOS/Linux ship with it):
+​	Alternatively, on **Mac or Linux**,  use `curl` directly (macOS/Linux ship with it):
 
-​		
 
 ```bash
 curl 'https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=\'DES=1004083;%27&MAKE_EPHEM=YES&EPHEM_TYPE=VECTORS&CENTER=\'500@399\'&REF_PLANE=ECLIPTIC&STEP_SIZE=1%20d&START_TIME=2025-01-01&STOP_TIME=2025-01-03'
 ```
 
-
-
-```bash
-
-```
 
 ### Windows
 1. Install Python 3 from https://www.python.org/downloads/ (tick “Add Python to PATH”).
