@@ -14,6 +14,13 @@ Use the folder that matches your app or the file type it accepts or download the
 - `apps-using-mpc-files/` – MPC-style daily ephemeris for software that wants classic MPC comet/asteroid files.
 - `apps-using-csv-files/` – full CSV datasets for tools that can read spreadsheets or plain data tables.
 
+Direct download shortcuts:
+- [Astro Gold kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_astro_gold.zip)
+- [Solar Fire kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_solar_fire.zip)
+- [TimePassages kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_time_passages.zip)
+- [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
+- [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
+
 **For developers & tinkerers**
 
 Everything needed to regenerate or tweak the ephemerides lives in `developer/` (Horizons JSON dumps, Python scripts, vendored `pyswisseph`, Swiss Ephemeris helper).
