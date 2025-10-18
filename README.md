@@ -1,6 +1,10 @@
 # 3I/ATLAS Ephemeris Kit
 
-Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated straight from NASA/JPL Horizons and organised so astrologers can drop the body into their favourite apps. Coverage spans the comet’s passage through the heliosphere (2016‑01‑01 → 2040‑12‑31).
+Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated straight from NASA/JPL Horizons and organised so astrologers can drop the body into their favorite apps. Coverage spans the comet’s passage through the heliosphere (2016‑01‑01 → 2040‑12‑31).
+
+These can be used with many apps such as SkySafari/SkyVoyager, Stellarium, KStars and Solar Fire along with others that can use the listed file types. For Astro Gold and TimePassages, unfortunately, there's no way to import new moving bodies. However, we have listed instructions about how to add it as a non-moving body for these apps if desired.
+
+
 
 ## Where to start?
 
@@ -14,7 +18,7 @@ Use the folder that matches your app or download the zip files below. If you are
 
 #### End-user direct downloads
 - [Solar Fire kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_solar_fire.zip)
-- [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
+- [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip) (SkySafari/SkyVoyager, Stellarium, and KStars)
 - [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
 
 Each zip contains the files from the matching folder plus a `README.txt` with the instructions below—unzip the bundle before importing into your software.
