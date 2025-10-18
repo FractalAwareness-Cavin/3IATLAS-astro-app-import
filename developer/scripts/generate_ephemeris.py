@@ -11,11 +11,13 @@ from typing import Dict, Iterable, List
 AU_KM = 149_597_870.7
 PI2 = math.tau
 
-ROOT_DIR = Path(__file__).resolve().parents[1]
-RAW_DIR = ROOT_DIR / "raw"
-DATA_DIR = ROOT_DIR / "data"
-TEXT_DIR = ROOT_DIR / "text"
-VENDOR_DIR = ROOT_DIR / "vendor"
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DEV_DIR = ROOT_DIR / "developer"
+RAW_DIR = DEV_DIR / "raw"
+DATA_DIR = ROOT_DIR / "for-csv"
+SOLAR_DIR = ROOT_DIR / "for-solar-fire"
+MPC_DIR = ROOT_DIR / "for-mpc-import"
+VENDOR_DIR = DEV_DIR / "vendor"
 if VENDOR_DIR.exists():
     sys.path.insert(0, str(VENDOR_DIR))
 
@@ -25,7 +27,8 @@ except ImportError:  # pragma: no cover - optional dependency
     swe = None
 
 DATA_DIR.mkdir(parents=True, exist_ok=True)
-TEXT_DIR.mkdir(parents=True, exist_ok=True)
+SOLAR_DIR.mkdir(parents=True, exist_ok=True)
+MPC_DIR.mkdir(parents=True, exist_ok=True)
 
 TARGETS: Dict[str, List[Path]] = {
     "heliocentric": sorted(RAW_DIR.glob("heliocentric_daily_*.json")) or [RAW_DIR / "heliocentric_daily.json"],
@@ -136,7 +139,7 @@ def write_csv(label: str, entries: Iterable[Dict[str, float]]) -> None:
 
 
 def write_solar_fire(label: str, entries: Iterable[Dict[str, float]]) -> None:
-    txt_path = TEXT_DIR / f"{label}_daily_solarfire.txt"
+    txt_path = SOLAR_DIR / f"{label}_daily_solarfire.txt"
     with txt_path.open("w") as out:
         out.write("# YYYY MM DD HHMM  Lon(deg)  Lat(deg)  Dist(AU)\n")
         for entry in entries:
@@ -243,7 +246,7 @@ def write_mpc_ephemeris(
 
     heli_map = {entry["jd"]: entry for entry in heliocentric_entries}
 
-    dest = DATA_DIR / "geocentric_mpc_ephemeris.txt"
+    dest = MPC_DIR / "geocentric_mpc_ephemeris.txt"
     with dest.open("w") as out:
         out.write(
             "Date (UT)    R.A. (J2000)   Dec. (J2000)    Delta    r    Elong  Phase   Mag\n"
@@ -391,7 +394,7 @@ def write_sidereal_outputs(label: str, entries: List[Dict[str, float]]) -> None:
         if label == "geocentric":
             write_sign_ingresses(label, sidereal_entries, "lambda_sidereal_deg", suffix)
 
-        txt_path = TEXT_DIR / f"{label}_{suffix}_daily_solarfire.txt"
+        txt_path = SOLAR_DIR / f"{label}_{suffix}_daily_solarfire.txt"
         with txt_path.open("w") as out:
             out.write("# YYYY MM DD HHMM  Lon_sid(deg)  Lat(deg)  Dist(AU)  Ayanamsa(deg)\n")
             for entry in sidereal_entries:

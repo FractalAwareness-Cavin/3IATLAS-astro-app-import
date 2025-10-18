@@ -1,24 +1,35 @@
-# 3I/ATLAS Ephemeris Data Kit
+# 3I/ATLAS Ephemeris Kit
 
-This folder packages daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)** so astrologers can experiment with the body inside their favourite tools. The numbers come directly from NASA/JPL Horizons and cover the full interval that the comet resides inside the heliosphere (2016‑01‑01 through 2040‑12‑31).
+Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated straight from NASA/JPL Horizons and organised so astrologers can drop the body into their favourite apps. Coverage spans the comet’s passage through the heliosphere (2016‑01‑01 → 2040‑12‑31).
 
-## Contents
+## Where to start?
 
-- `raw/` – JSON dumps returned by Horizons (heliocentric, geocentric, and barycentric frames). Each file can be regenerated with `scripts/generate_ephemeris.py`.
-- `data/`
-  - `*_daily.csv` – Cartesian + spherical coordinates in the ecliptic of J2000 frame, one row per TDB midnight.
-  - `geocentric_*_sign_ingresses.csv` – pre-computed tropical and sidereal ingress timestamps.
-  - `geocentric_sidereal_{lahiri,fagan_bradley}_daily.csv` – sidereal longitudes with the chosen ayanāṃśa and the exact ayanāṃśa value per day.
-  - `geocentric_mpc_ephemeris.txt` – MPC-style daily ephemeris (RA/Dec, Δ, r, elongation, phase) for quick import via “Add MPC comet/object” dialogs.
-- `text/`
-  - `*_daily_solarfire.txt` – tropical tables (`YYYY MM DD HHMM longitude latitude distance`) ready for Solar Fire / Astro Gold / TimePassages.
-  - `geocentric_sidereal_{lahiri,fagan_bradley}_daily_solarfire.txt` – same layout but with sidereal longitude plus an ayanāṃśa column.
-- `scripts/`
-  - `generate_ephemeris.py` – re-runs all Horizons queries and rebuilds every table. Optional sidereal outputs require `pyswisseph` (vendored under `vendor/`).
+**For non-developers**
+
+Use the folder that matches your app or the file type it accepts. If you are unsure, open your software, choose *File → Import* (or similar), and note the file extensions it expects. Keep this guide handy while you explore:
+
+- `astro-gold/` – ready-to-import text tables for Astro Gold (tropical + Lahiri and Fagan/Bradley sidereal variants).
+- `solar-fire/` – the same layout packaged for Solar Fire.
+- `time-passages/` – the same layout packaged for TimePassages.
+- `apps-using-mpc-files/` – MPC-style daily ephemeris for software that wants classic MPC comet/asteroid files.
+- `apps-using-csv-files/` – full CSV datasets for tools that can read spreadsheets or plain data tables.
+
+**For developers & tinkerers**
+
+Everything needed to regenerate or tweak the ephemerides lives in `developer/` (Horizons JSON dumps, Python scripts, vendored `pyswisseph`, Swiss Ephemeris helper).
+
+## Folder guide
+
+- **astro-gold/** – importable text ephemerides (`YYYY MM DD HHMM longitude latitude distance`) suited to Astro Gold. Contains tropical and sidereal versions (Lahiri, Fagan/Bradley).
+- **solar-fire/** – identical files labelled for Solar Fire users.
+- **time-passages/** – identical files labelled for TimePassages users.
+- **apps-using-mpc-files/** – `geocentric_mpc_ephemeris.txt`, formatted in the standard MPC 80-column style (daily UT 0h, J2000 RA/Dec, Δ, r, elongation, phase angle).
+- **apps-using-csv-files/** – the complete CSV suite: heliocentric/geocentric/barycentric vectors, tropical and sidereal longitudes, and sign-ingress summaries.
+- **developer/** – Horizons raw outputs, regeneration scripts, vendored `pyswisseph`, and Swiss Ephemeris build helper (`scripts/build_swisseph.sh`).
 
 ## Horizons recipe
 
-All tables were generated with the Horizons API using:
+All data was produced with Horizons solution #27 (2025-10-10) using:
 
 ```
 COMMAND='DES=1004083;'
@@ -32,69 +43,188 @@ CENTER='500@399'   (geocentric Earth)
 CENTER='500@0'     (solar-system barycentre)
 ```
 
-The raw responses are stored so you can reprocess them with different coordinate systems or cadences if needed.
+## Quick instructions by format
 
-## Using the data
+### Astro Gold / Solar Fire / TimePassages
+1. Pick the correct folder (`astro-gold/`, `solar-fire/`, or `time-passages/`) and choose the file that matches your tradition (e.g. `geocentric_daily_solarfire.txt` for tropical, `geocentric_sidereal_lahiri_daily_solarfire.txt` for Lahiri sidereal).
+2. Import through your app’s *File → Import → Text* (or equivalent), mapping columns to longitude / latitude / distance (and ayanāṃśa if present).
+3. Assign the body to a free custom slot (Solar Fire’s User #1, for example) so you can toggle it in chart settings.
 
-### 1. Solar Fire / Astro Gold / TimePassages
+### MPC-compatible comet/asteroid dialogs
+Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt`. Each line is a daily UT-midnight entry with J2000 RA/Dec, geocentric distance Δ, heliocentric distance *r*, elongation, phase, and a placeholder magnitude.
 
-1. Pick the text file that matches your tradition (tropical `geocentric_daily_solarfire.txt` or sidereal `geocentric_sidereal_lahiri_daily_solarfire.txt`, etc.).
-2. In Solar Fire choose *File → Open Ephemeris → Import → Text*, select the file, and map the columns as longitude, latitude, distance (and ayanāṃśa if present).
-3. Assign the body to a free **User-Defined object slot** (User #1 is a safe default if unused) so you can toggle it from *Chart Options → Points*.
+### CSV / research workflows
+`apps-using-csv-files/` holds everything:
+- `geocentric_daily.csv` – tropical ecliptic longitude/latitude/distance plus heliocentric Cartesian coordinates and velocities.
+- `geocentric_sidereal_lahiri_daily.csv` and `geocentric_sidereal_fagan_bradley_daily.csv` – sidereal longitudes (`lambda_sidereal_deg`) with the daily ayanāṃśa values.
+- `geocentric_*_sign_ingresses.csv` – tropical and sidereal sign-change timestamps.
+- `heliocentric_daily.csv`, `barycentric_daily.csv` – alternative reference frames.
 
-Astro Gold and TimePassages accept the same format through their custom-object import dialogs. Keep both tropical and sidereal files handy so you can swap depending on the chart style.
-
-If your software supports the MPC comet import workflow, point it at `data/geocentric_mpc_ephemeris.txt`—each line is the standard 80-column daily entry (UT midnight, J2000 coordinates).
-
-### 2. Open-source tools (Astrolog, Morinus, etc.)
-
-- `data/geocentric_daily.csv` – tropical longitude/latitude/distance plus heliocentric Cartesian coordinates and km s⁻¹ velocities.
-- `data/geocentric_sidereal_lahiri_daily.csv` / `data/geocentric_sidereal_fagan_bradley_daily.csv` – sidereal longitude columns (`lambda_sidereal_deg`) with the daily ayanāṃśa (`ayanamsa_deg`).
-- `geocentric_*_sign_ingresses.csv` – quick reference for sign changes (tropical and the two sidereal modes).
-- `data/geocentric_mpc_ephemeris.txt` – MPC 80-column ephemeris (daily UT 0h) suitable for programs that expect the classic MPC comet format.
-
-### 3. Swiss Ephemeris users
-
-Swiss Ephemeris stores custom bodies in `.se1` binaries. Use the official `mksweph` utility once you have compiled the Swiss Ephemeris tools from https://www.astro.com/ftp/swisseph/ (or run `scripts/build_swisseph.sh` after installing them):
+### Swiss Ephemeris `.se1`
+The Swiss Ephemeris authoring utility `mksweph` is proprietary. If you have access to it:
 
 ```
-# Tropical ephemeris
-mksweph -i data/geocentric_daily.csv \
-        -o swisseph/3I_ATLAS_geocentric.se1 \
-        -n "3I/ATLAS" \
-        -b 2016-01-01 -e 2040-12-31
-
-# Sidereal (Lahiri) ephemeris
-mksweph -i data/geocentric_sidereal_lahiri_daily.csv \
-        -o swisseph/3I_ATLAS_Lahiri.se1 \
-        -n "3I/ATLAS (Lahiri)" \
-        -b 2016-01-01 -e 2040-12-31
+SCRIPT_DIR=developer/scripts
+bash "$SCRIPT_DIR/build_swisseph.sh"
 ```
 
-Copy the resulting `.se1` files into your program’s `SWEPHEM` directory and assign them to any open asteroid/comet number. If you add the Swiss tools to your PATH, you can hook these commands into `scripts/generate_ephemeris.py` to rebuild the binaries automatically after a Horizons refresh.
+This script reads the CSVs from `apps-using-csv-files/` and writes `.se1` binaries into `swisseph/`. Copy those into your astrology program’s `SWEPHEM` folder and assign them to a free asteroid/comet slot.
+
+## Regenerating the ephemerides
+
+```
+cd developer/scripts
+python3 generate_ephemeris.py
+```
+
+The script re-queries Horizons (internet connection required), refreshes the JSON dumps in `developer/raw/`, and rewrites all output folders. `pyswisseph` is already vendored so sidereal output works out of the box.
 
 ## Key milestones
 
-- Heliosphere entry (94 au termination shock, inbound): **2018‑03‑22 21:14 TDB** (JD 2458200.385)
-- Perihelion (from Horizons solution #27): **2025‑10‑29 11:36 TDB**
-- Heliosphere exit (94 au, outbound): **2033‑06‑06 18:49 TDB** (JD 2463755.284)
-- Current geocentric snapshot near 2025‑10‑18: longitude ≈ 209.78° (Libra), distance ≈ 1.43 au, radial speed ≈ −20.17 km s⁻¹.
+- Termination-shock entry (~94 au, inbound): **2018‑03‑22 21:14 TDB** (JD 2458200.385)
+- Perihelion: **2025‑10‑29 11:36 TDB**
+- Termination-shock exit (~94 au, outbound): **2033‑06‑06 18:49 TDB** (JD 2463755.284)
+- Snapshot near 2025‑10‑18: longitude ≈ 209.8° (Libra), distance ≈ 1.43 au, radial velocity ≈ −20.17 km s⁻¹.
 
-## Rebuilding the tables
+## Notes & caveats
+
+- Times are Barycentric Dynamical Time (TDB) at 00:00 each day; convert to UT as needed.
+- Horizons solution uses planetary ephemeris DE441 and SB441-N16 perturbers.
+- Geocentric distances are from Earth’s centre. For topocentric viewpoints, rerun Horizons with your observatory code via the generator script.
+- Sidereal tables use Lahiri and Fagan/Bradley ayanāṃśas; apply your preferred ayanāṃśa if different.
+- The heliosphere boundary is approximated as a 94 au sphere. Adjust if your research uses another value.
+
+Enjoy charting 3I/ATLAS!
+
+## Optional: installing Horizons tooling
+
+You do not need a local Horizons install to use this kit—the data already comes from JPL. If you want to pull fresh ephemerides yourself, here are quick ways to access NASA/JPL Horizons on each platform:
+
+### macOS / Linux
+1. Ensure Python 3.10+ is available (in Terminal: `python3 --version`).
+
+   a. If on **Mac** and not installed, install homebrew by opening the Terminal app and inputting:
+
+   ```zsh
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+   
+   
+   
+   b.  If on **Linux** and not installed, see below. 
+
+2. Install the official Horizons client via Astroquery:
+   ```bash
+   python3 -m pip install astroquery --user
+   ```
+3. Query Horizons from the terminal:
+   ```bash
+   python3 - <<'PY'
+   from astroquery.jplhorizons import Horizons
+   obj = Horizons(id='DES=1004083;', location='500@399', epochs={'start':'2025-01-01', 'stop':'2025-01-10', 'step':'1d'})
+   print(obj.vectors())
+   PY
+   ```
+
+
+​	Astroquery wraps the official service and returns Pandas tables you can export to CSV.
+
+​	Alternative: use `curl` directly (macOS/Linux ship with it):
+
+​		
+
+```bash
+curl 'https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=\'DES=1004083;%27&MAKE_EPHEM=YES&EPHEM_TYPE=VECTORS&CENTER=\'500@399\'&REF_PLANE=ECLIPTIC&STEP_SIZE=1%20d&START_TIME=2025-01-01&STOP_TIME=2025-01-03'
+```
+
+
+
+```bash
 
 ```
-cd atlas_ephemeris
-python3 scripts/generate_ephemeris.py
+
+### Windows
+1. Install Python 3 from https://www.python.org/downloads/ (tick “Add Python to PATH”).
+2. Open PowerShell and run:
+   ```powershell
+   py -m pip install astroquery
+   ```
+3. Fetch Horizons data:
+   ```powershell
+   py - <<'PY'
+   from astroquery.jplhorizons import Horizons
+   obj = Horizons(id='DES=1004083;', location='500@399', epochs={'start':'2025-01-01', 'stop':'2025-01-10', 'step':'1d'})
+   print(obj.vectors())
+   PY
+   ```
+
+You can also use Windows Subsystem for Linux (WSL) and follow the macOS/Linux steps.
+
+### Classic CLI (Telnet)
+JPL still offers the traditional interactive interface:
+```bash
+telnet horizons.jpl.nasa.gov 6775
 ```
+Follow the prompts to enter the target (`DES=1004083;`) and output options. This is handy if you prefer the legacy workflow.
 
-The script re-queries Horizons (internet connection required) and overwrites the CSV/TXT outputs. Install `pyswisseph` beforehand if you want sidereal tables regenerated (`python3 -m pip install pyswisseph --target vendor`).
 
-## Notes and caveats
 
-- All timestamps are Barycentric Dynamical Time (TDB) at 00:00 each day. Convert to UT if your software expects it.
-- Horizons uses the DE441 planetary ephemeris and SB441-N16 perturbing asteroid model (solution date 2025‑10‑10).
-- Distances in the CSV are heliocentric by default. Geocentric files show topocentric range from Earth’s centre. Run Horizons with an observatory code if you need a specific location.
-- Sidereal practitioners can substitute a different ayanāṃśa by subtracting their preferred value from the tropical longitude. The sidereal tables provided here use Lahiri and Fagan/Bradley for convenience.
-- The termination shock is treated as a 94 au sphere; adjust if your research uses a different heliosphere model.
+## Linux install of Python
 
-Enjoy exploring 3I/ATLAS inside your charts!
+• Most desktop/server Linux installs ship with a Python interpreter because the OS (and many
+  tools) rely on it, but the default version may be older than 3.10. When you need Python 3.10+
+  explicitly, use the package manager for your distribution—or install from source/pyenv if the
+  repos are behind. Below are the common CLI commands by family:
+
+  - Debian / Ubuntu / Linux Mint
+      - Check current version: python3 --version
+      - Install latest repo build:
+        sudo apt update && sudo apt install python3 python3-pip
+      - If the official repos lag behind 3.10, add the deadsnakes PPA (Ubuntu-based only):
+        sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt update && sudo apt install
+        python3.10 python3.10-venv python3.10-distutils
+  - Fedora
+      - sudo dnf install python3 (Fedora 35+ already includes ≥3.10)
+  - RHEL / CentOS / Alma / Rocky
+      - Enable CodeReady/PowerTools if needed, then:
+        sudo dnf install python3
+      - For older releases, use Software Collections (SCL) or EPEL modules:
+        sudo dnf module enable python:3.11 && sudo dnf install python3
+  - openSUSE / SLES
+      - sudo zypper install python310 python310-pip
+  - Arch / Manjaro
+      - Arch typically tracks the newest CPython:
+        sudo pacman -S python
+      - For a specific older/newer release use pyenv or AUR packages (e.g., python310).
+  - Gentoo
+      - sudo emerge --ask dev-lang/python:3.11
+      - Then select the default with eselect python list / eselect python set python3.11.
+  - Void Linux
+      - sudo xbps-install -S python3
+  - NixOS / Nix
+      - nix-shell -p python311
+      - Or add python311 to your environment configuration.
+
+  If you’re on a distribution that doesn’t package your desired version, use one of these portable
+  approaches:
+
+  1. pyenv
+
+     curl https://pyenv.run | bash
+     exec $SHELL
+     pyenv install 3.12.2
+     pyenv global 3.12.2
+  2. Official source
+
+     sudo apt install build-essential zlib1g-dev libssl-dev libffi-dev
+     wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tgz
+     tar -xzf Python-3.12.2.tgz
+
+  cd Python-3.12.2
+  ./configure --enable-optimizations
+  make -j$(nproc)
+  sudo make altinstall  # installs as python3.12 without replacing system python
+
+  Even if a base system already includes Python, it’s multi-purpose to install your own 3.10+
+  alongside the system interpreter so you don’t break core utilities. Use virtual environments
+  (`python3 -m venv`) to keep project dependencies isolated.
