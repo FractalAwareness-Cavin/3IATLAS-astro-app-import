@@ -4,37 +4,66 @@ Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated
 
 ## Where to start?
 
-### **For non-developers**
-
-Use the folder that matches your app or the file type it accepts or download the corresponding `zip` file. If you are unsure, open your software, choose *File → Import* (or similar), and note the file extensions it expects. Keep this guide handy while you explore:
+Use the folder that matches your app or download the corresponding zip bundle. If you are unsure, open your software, choose *File → Import* (or similar), and note the file extensions it expects.
 
 - `astro-gold/` – ready-to-import text tables for Astro Gold (tropical + Lahiri and Fagan/Bradley sidereal variants).
 - `solar-fire/` – the same layout packaged for Solar Fire.
 - `time-passages/` – the same layout packaged for TimePassages.
 - `apps-using-mpc-files/` – MPC-style daily ephemeris for software that wants classic MPC comet/asteroid files.
 - `apps-using-csv-files/` – full CSV datasets for tools that can read spreadsheets or plain data tables.
+- `developer/` – Horizons JSON dumps, regeneration scripts, vendored `pyswisseph`, and the Swiss Ephemeris helper.
 
-#### End-User Direct Downloads: 
-
+#### End-user direct downloads
 - [Astro Gold kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_astro_gold.zip)
 - [Solar Fire kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_solar_fire.zip)
 - [TimePassages kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_time_passages.zip)
 - [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
 - [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
 
-### **For developers & tinkerers**:
-
-Everything needed to regenerate or tweak the ephemerides lives in `developer/` (Horizons JSON dumps, Python scripts, vendored `pyswisseph`, Swiss Ephemeris helper).
+Need step-by-step instructions? Jump to:
+- [Astro Gold (macOS / iOS)](#astro-gold-instructions)
+- [Solar Fire (Windows)](#solar-fire-instructions)
+- [TimePassages (macOS / Windows)](#timepassages-instructions)
+- [MPC-format import](#mpc-import-instructions)
+- [CSV usage](#csv-usage-notes)
 
 ## Folder guide
 
-- **astro-gold/** – importable text ephemerides (`YYYY MM DD HHMM longitude latitude distance`) suited to Astro Gold. Contains tropical and sidereal versions (Lahiri, Fagan/Bradley).
-- **solar-fire/** – identical files labelled for Solar Fire users.
-- **time-passages/** – identical files labelled for TimePassages users.
-- **apps-using-mpc-files/** – `geocentric_mpc_ephemeris.txt`, formatted in the standard MPC 80-column style (daily UT 0h, J2000 RA/Dec, Δ, r, elongation, phase angle).
-- **apps-using-csv-files/** – the complete CSV suite: heliocentric/geocentric/barycentric vectors, tropical and sidereal longitudes, and sign-ingress summaries.
-- **developer/** – Horizons raw outputs, regeneration scripts, vendored `pyswisseph`, and Swiss Ephemeris build helper (`scripts/build_swisseph.sh`).
+- **astro-gold/** – importable text ephemerides (`YYYY MM DD HHMM longitude latitude distance`) for Astro Gold.
+- **solar-fire/** – same files labelled for Solar Fire.
+- **time-passages/** – same files labelled for TimePassages.
+- **apps-using-mpc-files/** – `geocentric_mpc_ephemeris.txt` in MPC 80-column format (daily UT 0h, J2000 RA/Dec, Δ, r, elongation, phase angle).
+- **apps-using-csv-files/** – the complete CSV suite: heliocentric/geocentric/barycentric vectors, tropical and sidereal longitudes, sign-ingress summaries.
+- **developer/** – raw Horizons outputs, regeneration scripts, vendored `pyswisseph`, and `build_swisseph.sh`.
 
+## App-specific instructions
+
+### Astro Gold instructions
+**macOS**
+1. Copy `geocentric_daily_solarfire.txt` (or the sidereal variant) into `~/Library/Containers/au.com.esotech.AstroGoldMac/Data/Library/Application Support/Astro Gold/Ephemerides/`.
+2. In Astro Gold choose **Astro Gold → Settings… → Points → Custom Points**.
+3. Click **Import** (or **+**), select **Solar Fire Text**, choose the file, and name the body (e.g. `3I/ATLAS`).
+4. Enable the new point.
+
+**iOS / iPadOS**
+1. Place the `.txt` file in `On My iPhone/iPad → Astro Gold → Ephemerides` via the Files app (or Finder when connected to a Mac).
+2. Inside Astro Gold go to **Settings → Points → Custom Points → Import**, choose **Solar Fire Text**, and select the file.
+3. Name/enable the body.
+
+### Solar Fire instructions (Windows)
+1. Copy the desired `.txt` file into `Documents\Solar Fire User Files\Ephemerides`.
+2. In Solar Fire select **File → Open Ephemeris → Import → Text**, map columns to **Longitude**, **Latitude**, **Distance (AU)**, and name the ephemeris (e.g. `3I_ATLAS`).
+3. Assign it to a free User point (User #1 is common) and enable that point in chart settings.
+
+### TimePassages instructions (macOS / Windows)
+- **macOS**: copy the file to `~/Library/Application Support/TimePassages/Ephemerides/`, then use **TimePassages → Preferences → Calculations → Custom Bodies → Import** (choose *Solar Fire Text*). Enable the body and add it under **Charts → Chart Settings → Planets & Points**.
+- **Windows**: copy the file to `%APPDATA%\TimePassages\Ephemerides\`, then follow **Edit → Preferences → Calculations → Custom Bodies → Import**. Enable the body and include it in your chart point selection.
+
+### MPC import instructions
+Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt` with any MPC comet/asteroid import dialog (SkySafari, Stellarium, KStars, TimePassages MPC import, etc.). Browse to the file, name the object `3I/ATLAS`, and confirm.
+
+### CSV usage notes
+`apps-using-csv-files/` contains the raw Horizons data for spreadsheets, scripting, or custom tools. Longitudes are in degrees, distances in AU, velocities in km/s. Sidereal tables include the daily ayanāṃśa (`ayanamsa_deg`).
 
 ## Horizons recipe
 
@@ -52,24 +81,7 @@ CENTER='500@399'   (geocentric Earth)
 CENTER='500@0'     (solar-system barycentre)
 ```
 
-## Quick instructions by format
-
-### Astro Gold / Solar Fire / TimePassages
-1. Pick the correct folder (`astro-gold/`, `solar-fire/`, or `time-passages/`) and choose the file that matches your tradition (e.g. `geocentric_daily_solarfire.txt` for tropical, `geocentric_sidereal_lahiri_daily_solarfire.txt` for Lahiri sidereal).
-2. Import through your app’s *File → Import → Text* (or equivalent), mapping columns to longitude / latitude / distance (and ayanāṃśa if present).
-3. Assign the body to a free custom slot (Solar Fire’s User #1, for example) so you can toggle it in chart settings.
-
-### MPC-compatible comet/asteroid dialogs
-Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt`. Each line is a daily UT-midnight entry with J2000 RA/Dec, geocentric distance Δ, heliocentric distance *r*, elongation, phase, and a placeholder magnitude.
-
-### CSV / research workflows
-`apps-using-csv-files/` holds everything:
-- `geocentric_daily.csv` – tropical ecliptic longitude/latitude/distance plus heliocentric Cartesian coordinates and velocities.
-- `geocentric_sidereal_lahiri_daily.csv` and `geocentric_sidereal_fagan_bradley_daily.csv` – sidereal longitudes (`lambda_sidereal_deg`) with the daily ayanāṃśa values.
-- `geocentric_*_sign_ingresses.csv` – tropical and sidereal sign-change timestamps.
-- `heliocentric_daily.csv`, `barycentric_daily.csv` – alternative reference frames.
-
-### Swiss Ephemeris `.se1`
+## Swiss Ephemeris `.se1`
 The Swiss Ephemeris authoring utility `mksweph` is proprietary. If you have access to it:
 
 ```
@@ -111,33 +123,13 @@ You do not need a local Horizons install to use this kit—the data already come
 
 ### macOS / Linux
 1. Ensure Python 3.10+ is available (in Terminal: `python3 --version`).
-
-   a. If on **Mac** and not installed, install homebrew by opening the Terminal app and inputting:
-
-   ```zsh
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-
-   then:
-
-   ```zsh
-   brew upgrade
-   brew install python
-   ```
-
-   b.  If on **Linux** and not installed, see below. 
-
-   
-
-2. Install the official Horizons client via Astroquery:
+   - **macOS**: if Python is missing, install Homebrew, then `brew install python`.
+   - **Linux**: see the distribution-specific commands [below](#linux-install-of-python).
+2. Install Astroquery:
    ```bash
    python3 -m pip install astroquery --user
    ```
-
-   
-
-3. Query Horizons from the terminal:
-
+3. Query Horizons:
    ```bash
    python3 - <<'PY'
    from astroquery.jplhorizons import Horizons
@@ -145,115 +137,72 @@ You do not need a local Horizons install to use this kit—the data already come
    print(obj.vectors())
    PY
    ```
+   Astroquery wraps the official service and returns Pandas tables you can export to CSV.
 
-
-​	Astroquery wraps the official service and returns Pandas tables you can export to CSV.
-
-​	Alternatively, on **Mac or Linux**,  use `curl` directly (macOS/Linux ship with it):
-
-
-```bash
-curl 'https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=\'DES=1004083;%27&MAKE_EPHEM=YES&EPHEM_TYPE=VECTORS&CENTER=\'500@399\'&REF_PLANE=ECLIPTIC&STEP_SIZE=1%20d&START_TIME=2025-01-01&STOP_TIME=2025-01-03'
-```
-
+   Alternative (macOS/Linux):
+   ```bash
+   curl 'https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=\'DES=1004083;%27&MAKE_EPHEM=YES&EPHEM_TYPE=VECTORS&CENTER=\'500@399\'&REF_PLANE=ECLIPTIC&STEP_SIZE=1%20d&START_TIME=2025-01-01&STOP_TIME=2025-01-03'
+   ```
 
 ### Windows
 1. Install Python 3 from https://www.python.org/downloads/ (tick “Add Python to PATH”).
-2. Open PowerShell and run:
+2. In PowerShell:
    ```powershell
    py -m pip install astroquery
-   ```
-3. Fetch Horizons data:
-   ```powershell
    py - <<'PY'
    from astroquery.jplhorizons import Horizons
    obj = Horizons(id='DES=1004083;', location='500@399', epochs={'start':'2025-01-01', 'stop':'2025-01-10', 'step':'1d'})
    print(obj.vectors())
    PY
    ```
-
-You can also use Windows Subsystem for Linux (WSL) and follow the macOS/Linux steps.
+3. Windows Subsystem for Linux (WSL) users can follow the macOS/Linux instructions.
 
 ### Classic CLI (Telnet)
-JPL still offers the traditional interactive interface:
 ```bash
 telnet horizons.jpl.nasa.gov 6775
 ```
-Follow the prompts to enter the target (`DES=1004083;`) and output options. This is handy if you prefer the legacy workflow.
+Follow the prompts to enter the target (`DES=1004083;`) and output options.
 
+## Linux install of Python
 
+Most desktop/server Linux installs ship with a Python interpreter because the OS (and many tools) rely on it, but the default version may be older than 3.10. When you need Python 3.10+ explicitly, use the package manager for your distribution—or install from source/pyenv if the repos are behind. Below are the common CLI commands by family:
 
- ## Linux install of Python
+- **Debian / Ubuntu / Linux Mint**
+  - Check current version: `python3 --version`
+  - Install latest repo build: `sudo apt update && sudo apt install python3 python3-pip`
+  - If the official repos lag behind 3.10, add the deadsnakes PPA (Ubuntu-based only): `sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt update && sudo apt install python3.10 python3.10-venv python3.10-distutils`
+- **Fedora** – `sudo dnf install python3`
+- **RHEL / CentOS / Alma / Rocky**
+  - Enable CodeReady/PowerTools if needed, then `sudo dnf install python3`
+  - For older releases use modules: `sudo dnf module enable python:3.11 && sudo dnf install python3`
+- **openSUSE / SLES** – `sudo zypper install python310 python310-pip`
+- **Arch / Manjaro**
+  - Arch tracks the latest CPython: `sudo pacman -S python`
+  - Use `pyenv` or an AUR package (e.g. `python310`) for specific versions.
+- **Gentoo**
+  - `sudo emerge --ask dev-lang/python:3.11`
+  - Set the default with `eselect python list` / `eselect python set python3.11`
+- **Void Linux** – `sudo xbps-install -S python3`
+- **NixOS / Nix** – `nix-shell -p python311` or add `python311` to your configuration.
 
-  Most desktop/server Linux installs ship with a Python interpreter because the OS (and many
-  tools) rely on it, but the default version may be older than 3.10. When you need Python 3.10+
-  explicitly, use the package manager for your distribution—or install from source/pyenv if the
-  repos are behind. Below are the common CLI commands by family:
+If your distribution lacks the desired version:
 
-  - **Debian / Ubuntu / Linux Mint**
-    - Check current version: `python3 --version`
-    - Install latest repo build:
-      `sudo apt update && sudo apt install python3 python3-pip`
-    - If the official repos lag behind 3.10, add the deadsnakes PPA (Ubuntu-based only):
-      `sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt update && sudo apt install python3.10
-      python3.10-venv python3.10-distutils`
+1. **pyenv**
+   ```bash
+   curl https://pyenv.run | bash
+   exec $SHELL
+   pyenv install 3.12.2
+   pyenv global 3.12.2
+   ```
+2. **Official source**
+   ```bash
+   sudo apt install build-essential zlib1g-dev libssl-dev libffi-dev
+   wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tgz
+   tar -xzf Python-3.12.2.tgz
+   cd Python-3.12.2
+   ./configure --enable-optimizations
+   make -j$(nproc)
+   sudo make altinstall
+   ```
 
-  - **Fedora**
-    - `sudo dnf install python3` (Fedora 35+ already includes ≥3.10)
-
-  - **RHEL / CentOS / Alma / Rocky**
-    - Enable CodeReady/PowerTools if needed, then:
-      `sudo dnf install python3`
-    - For older releases, use Software Collections (SCL) or EPEL modules:
-      `sudo dnf module enable python:3.11 && sudo dnf install python3`
-
-  - **openSUSE / SLES**
-    - `sudo zypper install python310 python310-pip`
-
-  - **Arch / Manjaro**
-    - Arch typically tracks the newest CPython:
-      `sudo pacman -S python`
-    - For a specific older/newer release use pyenv or AUR packages (e.g., `python310`).
-
-  - **Gentoo**
-    - `sudo emerge --ask dev-lang/python:3.11`
-    - Then select the default with `eselect python list` / `eselect python set python3.11`.
-
-  - **Void Linux**
-    - `sudo xbps-install -S python3`
-
-  - **NixOS / Nix**
-    - `nix-shell -p python311`
-    - Or add `python311` to your environment configuration.
-
-  If you’re on a distribution that doesn’t package your desired version, use one of these portable
-  approaches:
-
-  1. **pyenv**
-     ```bash
-     curl https://pyenv.run | bash
-     exec $SHELL
-     pyenv install 3.12.2
-     pyenv global 3.12.2
-
-  2. Official source
-
-     ```bash
-     sudo apt install build-essential zlib1g-dev libssl-dev libffi-dev
-     wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tgz
-     tar -xzf Python-3.12.2.tgz
-     cd Python-3.12.2
-     ./configure --enable-optimizations
-     make -j$(nproc)
-     sudo make altinstall
-     ```
-     
-     
-
-  This installs as python3.12 without replacing system python
-
------
-
-  Even if a base system already includes Python, it’s best to install your own 3.10+ alongside the
-  system interpreter so you don’t break core utilities. Use virtual environments (python3 -m venv)
-  to keep project dependencies isolated.
+Even if a base system already includes Python, it’s safest to install your own 3.10+ alongside the system interpreter and use virtual environments (`python3 -m venv`) to isolate project dependencies.
