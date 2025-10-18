@@ -6,15 +6,14 @@ Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated
 
 Use the folder that matches your app or download the zip files below. If you are unsure, open your software, choose *File → Import* (or similar), and note the file extensions it expects.
 
-- `astro-gold/` – ready-to-import text tables for Astro Gold (tropical + Lahiri and Fagan/Bradley sidereal variants).
-- `solar-fire/` – the same layout packaged for Solar Fire.
+- *(Astro Gold currently does not provide a custom-import workflow; see note below.)*
+- `solar-fire/` – Solar Fire extras.dat entry and reference ephemerides.
 - `time-passages/` – the same layout packaged for TimePassages.
 - `apps-using-mpc-files/` – MPC-style daily ephemeris for software that wants classic MPC comet/asteroid files.
 - `apps-using-csv-files/` – full CSV datasets for tools that can read spreadsheets or plain data tables.
 - `developer/` – Horizons JSON dumps, regeneration scripts, vendored `pyswisseph`, and the Swiss Ephemeris helper.
 
 #### End-user direct downloads
-- [Astro Gold kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_astro_gold.zip)
 - [Solar Fire kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_solar_fire.zip)
 - [TimePassages kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_time_passages.zip)
 - [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
@@ -40,17 +39,8 @@ Need step-by-step instructions? Jump to:
 
 ## App-specific instructions
 
-### Astro Gold instructions
-**macOS**
-1. Copy `geocentric_daily_solarfire.txt` (or the sidereal variant) into `~/Library/Containers/au.com.esotech.AstroGoldMac/Data/Library/Application Support/Astro Gold/Ephemerides/`.
-2. In Astro Gold choose **Astro Gold → Settings…** and select **Chart → Chart Points** in the sidebar.
-3. Click **Manage Points… → Import**, choose **Solar Fire Text**, pick the file, and name the body (e.g. `3I/ATLAS`).
-4. Tick the new point to enable it.
-
-**iOS / iPadOS**
-1. Place the `.txt` file in `On My iPhone/iPad → Astro Gold → Ephemerides` via the Files app (or Finder when connected to a Mac).
-2. Inside Astro Gold go to **Settings → Chart Points → Manage Points… → Import**, choose **Solar Fire Text**, and select the file.
-3. Name and enable the body.
+### Astro Gold status
+Astro Gold (macOS, iOS, iPadOS) currently exposes only the built-in “Extra Points” catalogue; it does **not** provide an import workflow for third-party ephemerides or orbital elements. Keep an eye on the vendor’s updates—if 3I/ATLAS is added to their catalogue it can be enabled via **Settings → Displayed/Chart Points**.
 
 ### Solar Fire instructions (Windows)
 1. Copy the desired `.txt` file into `Documents\Solar Fire User Files\Ephemerides`.
