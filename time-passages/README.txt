@@ -22,6 +22,6 @@ Windows
 3. Use **Import** to load the file, name the body, and tick it on.
 4. Add the body to your chart point selection and recalc any open charts.
 
-If you prefer to work with MPC-format data instead, you can use the file in
-`../apps-using-mpc-files/geocentric_mpc_ephemeris.txt` and follow TimePassages'
-instructions for importing a “Comet/Asteroid from MPC file”.
+If you prefer the MPC workflow, the same folder includes
+`geocentric_mpc_ephemeris.txt`; use TimePassages' **Comet/Asteroid → Import
+from MPC file** option and select it.

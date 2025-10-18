@@ -4,7 +4,7 @@ Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated
 
 ## Where to start?
 
-Use the folder that matches your app or download the corresponding zip bundle. If you are unsure, open your software, choose *File → Import* (or similar), and note the file extensions it expects.
+Use the folder that matches your app or download the zip files below. If you are unsure, open your software, choose *File → Import* (or similar), and note the file extensions it expects.
 
 - `astro-gold/` – ready-to-import text tables for Astro Gold (tropical + Lahiri and Fagan/Bradley sidereal variants).
 - `solar-fire/` – the same layout packaged for Solar Fire.
@@ -60,9 +60,10 @@ Need step-by-step instructions? Jump to:
 ### TimePassages instructions (macOS / Windows)
 - **macOS**: copy the file to `~/Library/Application Support/TimePassages/Ephemerides/`, then use **TimePassages → Preferences → Calculations → Custom Bodies → Import** (choose *Solar Fire Text*). Enable the body and add it under **Charts → Chart Settings → Planets & Points**.
 - **Windows**: copy the file to `%APPDATA%\TimePassages\Ephemerides\`, then follow **Edit → Preferences → Calculations → Custom Bodies → Import**. Enable the body and include it in your chart point selection.
+- Alternatively, use **Comet/Asteroid → Import from MPC file** with `time-passages/geocentric_mpc_ephemeris.txt` (or the copy in `apps-using-mpc-files/`).
 
 ### MPC import instructions
-Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt` with any MPC comet/asteroid import dialog (SkySafari, Stellarium, KStars, TimePassages MPC import, etc.). Browse to the file, name the object `3I/ATLAS`, and confirm.
+Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt` (also duplicated in the TimePassages folder for convenience) with any MPC comet/asteroid import dialog—examples include SkySafari/SkyVoyager, Stellarium, KStars, and TimePassages' comet import. Browse to the file, name the object `3I/ATLAS`, and confirm.
 
 ### CSV usage notes
 `apps-using-csv-files/` contains the raw Horizons data for spreadsheets, scripting, or custom tools. Longitudes are in degrees, distances in AU, velocities in km/s. Sidereal tables include the daily ayanāṃśa (`ayanamsa_deg`).
