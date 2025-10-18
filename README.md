@@ -31,11 +31,11 @@ Everything needed to regenerate or tweak the ephemerides lives in `developer/` (
 
 **Use these** if you want to download all the relevant files for your app so they are ready to use on your device once unzipped:
 
-* **astro-gold.zip**
-* **solar-fire.zip**
-* **time-passages.zip**
-* **apps-using-mpc-files.zip**
-* **apps-using-csv-files.zip**
+* **[astro-gold.zip](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/astro-gold.zip)**
+* **[solar-fire.zip](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/solar-fire.zip)**
+* [**time-passages.zip**](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/time-passages.zip)
+* **[apps-using-mpc-files.zip](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/apps-using-mpc-files.zip)**
+* [**apps-using-csv-files.zip**](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/apps-using-csv-files.zip)
 
 
 
