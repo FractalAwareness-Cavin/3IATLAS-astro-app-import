@@ -36,6 +36,7 @@ Need step-by-step instructions? Jump to:
 - **apps-using-csv-files/** – heliocentric/geocentric/barycentric CSV vectors, tropical & sidereal longitudes, sign-ingress summaries.
 - **developer/** – raw Horizons outputs, regeneration scripts, vendored `pyswisseph`, and `build_swisseph.sh`.
 - **Time-Passages-Astro-Gold/** – limitations and fixed-point tips for apps that cannot yet import moving bodies.
+- **import-pack/3I-ATLAS/** – optional templates, advanced documentation, and a converter script for Stellarium, KStars, and Solar Fire power users.
 
 ## App-specific instructions
 

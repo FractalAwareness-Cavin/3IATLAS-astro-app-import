@@ -1,0 +1,10 @@
+# Solar Fire extras.dat — placeholder for 3I/ATLAS
+# ⚠️ WARNING: The exact field order in extras.dat can vary by Solar Fire version.
+# Use File Manager → Extra Bodies and the built-in help topic “Format of the Orbital Elements File” in your version as the source of truth.
+# Typical fields (COMET class): Name, Class, q[au], e, i[deg], Ω[deg], ω[deg], T(YYYYMMDD.ddddd or JD), H, g
+# Example SKELETON (DO NOT USE VERBATIM):
+# 3I/ATLAS, COMET, 1.3797753, 6.320503, 175.12093, 322.34889, 127.77350, 20251030.00000, 15.5, 5.0
+# After editing extras.dat:
+# 1) In Displayed Points… enable “Other Bodies”
+# 2) Tick 3I/ATLAS in the list
+# 3) Restart Solar Fire if it doesn't appear immediately
