@@ -4,7 +4,7 @@ Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated
 
 ## Where to start?
 
-**For non-developers**
+### **For non-developers**
 
 Use the folder that matches your app or the file type it accepts or download the corresponding `zip` file. If you are unsure, open your software, choose *File → Import* (or similar), and note the file extensions it expects. Keep this guide handy while you explore:
 
@@ -14,14 +14,15 @@ Use the folder that matches your app or the file type it accepts or download the
 - `apps-using-mpc-files/` – MPC-style daily ephemeris for software that wants classic MPC comet/asteroid files.
 - `apps-using-csv-files/` – full CSV datasets for tools that can read spreadsheets or plain data tables.
 
-Direct download shortcuts:
+#### End-User Direct Downloads: 
+
 - [Astro Gold kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_astro_gold.zip)
 - [Solar Fire kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_solar_fire.zip)
 - [TimePassages kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_time_passages.zip)
 - [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
 - [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
 
-**For developers & tinkerers**
+### **For developers & tinkerers**:
 
 Everything needed to regenerate or tweak the ephemerides lives in `developer/` (Horizons JSON dumps, Python scripts, vendored `pyswisseph`, Swiss Ephemeris helper).
 
@@ -33,17 +34,6 @@ Everything needed to regenerate or tweak the ephemerides lives in `developer/` (
 - **apps-using-mpc-files/** – `geocentric_mpc_ephemeris.txt`, formatted in the standard MPC 80-column style (daily UT 0h, J2000 RA/Dec, Δ, r, elongation, phase angle).
 - **apps-using-csv-files/** – the complete CSV suite: heliocentric/geocentric/barycentric vectors, tropical and sidereal longitudes, and sign-ingress summaries.
 - **developer/** – Horizons raw outputs, regeneration scripts, vendored `pyswisseph`, and Swiss Ephemeris build helper (`scripts/build_swisseph.sh`).
-
-## File guide (for end-users)
-
-**Use these** if you want to download all the relevant files for your app so they are ready to use on your device once unzipped:
-
-* **[astro-gold.zip](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/astro-gold.zip)**
-* **[solar-fire.zip](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/solar-fire.zip)**
-* [**time-passages.zip**](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/time-passages.zip)
-* **[apps-using-mpc-files.zip](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/apps-using-mpc-files.zip)**
-* [**apps-using-csv-files.zip**](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/blob/main/apps-using-csv-files.zip)
-
 
 
 ## Horizons recipe
