@@ -20,6 +20,8 @@ Use the folder that matches your app or download the corresponding zip bundle. I
 - [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
 - [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
 
+Each zip contains the files from the matching folder plus a `README.txt` with the instructions below—unzip the bundle before importing into your software.
+
 Need step-by-step instructions? Jump to:
 - [Astro Gold (macOS / iOS)](#astro-gold-instructions)
 - [Solar Fire (Windows)](#solar-fire-instructions)
