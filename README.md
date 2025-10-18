@@ -6,36 +6,32 @@ Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated
 
 Use the folder that matches your app or download the zip files below. If you are unsure, open your software, choose *File → Import* (or similar), and note the file extensions it expects.
 
-- *(Astro Gold currently does not provide a custom-import workflow; see note below.)*
-- `solar-fire/` – Solar Fire extras.dat entry and reference ephemerides.
-- `time-passages/` – the same layout packaged for TimePassages.
-- `apps-using-mpc-files/` – MPC-style daily ephemeris for software that wants classic MPC comet/asteroid files.
+- `solar-fire/` – Solar Fire `extras.dat` entry and reference ephemerides.
+- `apps-using-mpc-files/` – MPC-style daily ephemeris for astronomy tools that accept comet/asteroid MPC data.
 - `apps-using-csv-files/` – full CSV datasets for tools that can read spreadsheets or plain data tables.
 - `developer/` – Horizons JSON dumps, regeneration scripts, vendored `pyswisseph`, and the Swiss Ephemeris helper.
+- `Time-Passages-Astro-Gold/` – explanation of why Astro Gold and TimePassages currently cannot import new moving bodies, plus tips for their fixed custom points.
 
 #### End-user direct downloads
 - [Solar Fire kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_solar_fire.zip)
-- [TimePassages kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_time_passages.zip)
 - [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
 - [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
 
 Each zip contains the files from the matching folder plus a `README.txt` with the instructions below—unzip the bundle before importing into your software.
 
 Need step-by-step instructions? Jump to:
-- [Astro Gold (macOS / iOS)](#astro-gold-instructions)
 - [Solar Fire (Windows)](#solar-fire-instructions)
-- [TimePassages (macOS / Windows)](#timepassages-instructions)
 - [MPC-format import](#mpc-import-instructions)
 - [CSV usage](#csv-usage-notes)
+- [Astro Gold & TimePassages status](#astro-gold--timepassages-status)
 
 ## Folder guide
 
-- **astro-gold/** – importable text ephemerides (`YYYY MM DD HHMM longitude latitude distance`) for Astro Gold.
-- **solar-fire/** – same files labelled for Solar Fire.
-- **time-passages/** – same files labelled for TimePassages.
+- **solar-fire/** – Solar Fire extras (`extras.dat`) plus reference ephemerides for cross-checking.
 - **apps-using-mpc-files/** – `geocentric_mpc_ephemeris.txt` in MPC 80-column format (daily UT 0h, J2000 RA/Dec, Δ, r, elongation, phase angle).
-- **apps-using-csv-files/** – the complete CSV suite: heliocentric/geocentric/barycentric vectors, tropical and sidereal longitudes, sign-ingress summaries.
+- **apps-using-csv-files/** – heliocentric/geocentric/barycentric CSV vectors, tropical & sidereal longitudes, sign-ingress summaries.
 - **developer/** – raw Horizons outputs, regeneration scripts, vendored `pyswisseph`, and `build_swisseph.sh`.
+- **Time-Passages-Astro-Gold/** – limitations and fixed-point tips for apps that cannot yet import moving bodies.
 
 ## App-specific instructions
 
@@ -43,17 +39,17 @@ Need step-by-step instructions? Jump to:
 Astro Gold (macOS, iOS, iPadOS) currently exposes only the built-in “Extra Points” catalogue; it does **not** provide an import workflow for third-party ephemerides or orbital elements. Keep an eye on the vendor’s updates—if 3I/ATLAS is added to their catalogue it can be enabled via **Settings → Displayed/Chart Points**.
 
 ### Solar Fire instructions (Windows)
-1. Copy the desired `.txt` file into `Documents\Solar Fire User Files\Ephemerides`.
-2. In Solar Fire select **File → Open Ephemeris → Import → Text**, map columns to **Longitude**, **Latitude**, **Distance (AU)**, and name the ephemeris (e.g. `3I_ATLAS`).
-3. Assign it to a free User point (User #1 is common) and enable that point in chart settings.
-
-### TimePassages instructions (macOS / Windows)
-- **macOS**: copy the file to `~/Library/Application Support/TimePassages/Ephemerides/`, then use **TimePassages → Preferences → Calculations → Custom Bodies → Import** (choose *Solar Fire Text*). Enable the body and add it under **Charts → Chart Settings → Planets & Points**.
-- **Windows**: copy the file to `%APPDATA%\TimePassages\Ephemerides\`, then follow **Edit → Preferences → Calculations → Custom Bodies → Import**. Enable the body and include it in your chart point selection.
-- Alternatively, use **Comet/Asteroid → Import from MPC file** with `time-passages/geocentric_mpc_ephemeris.txt` (or the copy in `apps-using-mpc-files/`).
+1. Quit Solar Fire and back up `Documents\Solar Fire User Files\Points & Colors\extras.dat`.
+2. Merge the `[3I_ATLAS]` block from `solar-fire/extras.dat` (this repo) into your user `extras.dat` or replace the file if you have no other custom entries.
+3. Relaunch Solar Fire. Under **File → File Types…** choose **Extra Bodies** to confirm the file is active.
+4. In your chart point selection dialog tick the **Other Bodies / Extra Bodies** group and enable `3I/ATLAS` so it appears in wheels and reports.
+5. The `.txt` ephemeris files in `solar-fire/` are provided only for cross-checking daily positions; Solar Fire ignores them for new bodies.
 
 ### MPC import instructions
-Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt` (also duplicated in the TimePassages folder for convenience) with any MPC comet/asteroid import dialog—examples include SkySafari/SkyVoyager, Stellarium, KStars, and TimePassages' comet import. Browse to the file, name the object `3I/ATLAS`, and confirm.
+Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt` with any MPC comet/asteroid import dialog—examples include SkySafari/SkyVoyager, Stellarium, and KStars. Browse to the file, name the object `3I/ATLAS`, and confirm.
+
+### Astro Gold & TimePassages status
+Astro Gold (macOS, iOS, iPadOS) and TimePassages Desktop (macOS / Windows) currently expose only the vendor-supplied catalogues of extra points. They do **not** provide a way to import third-party ephemerides or orbital elements for a new moving body. See `Time-Passages-Astro-Gold/README.txt` for details, tips on using their fixed custom points, and vendor contact links if you wish to request official support.
 
 ### CSV usage notes
 `apps-using-csv-files/` contains the raw Horizons data for spreadsheets, scripting, or custom tools. Longitudes are in degrees, distances in AU, velocities in km/s. Sidereal tables include the daily ayanāṃśa (`ayanamsa_deg`).
