@@ -34,3 +34,6 @@ This writes `.se1` files into `../swisseph/` for distribution.
 
 Feel free to modify the script to change cadence, coordinate systems,
 or center bodies; the raw JSONs provide traceability back to Horizons.
+
+For detailed usage notes, including the SBDB updater and verification helpers,
+see `scripts/README.md`.

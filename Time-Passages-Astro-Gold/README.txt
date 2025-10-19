@@ -25,6 +25,13 @@ exposes an import hook), you cannot install it as a moving body in Astro Gold.
 Use the built-in extras, or record 3I/ATLAS as a fixed custom point if you only
 need its position at a single epoch.
 
+### Fixed-point walkthrough (Astro Gold)
+1. Pick the date/time you want to freeze (example: **2025-10-29 00:00 UT** near perihelion).
+2. Open `apps-using-csv-files/geocentric_daily.csv` and find the matching row. Note the tropical longitude (`lambda_deg`) and latitude (`beta_deg`). For the example above the table gives `lambda_deg = 203.560 deg` (approx 23 deg 33' Scorpio) and `beta_deg = 2.283 deg`.
+3. In Astro Gold (macOS) choose **Astro Gold → Preferences → Displayed Points → Add Extra Points…**, then switch to the **Custom Points** tab. On iOS/iPadOS use **Settings → Chart Points → Add Extra Points…**.
+4. Create a new point named something like `3I/ATLAS 2025-10-29 UT`, set the longitude field to the decimal value (or the sign/degree format Astro Gold expects), and optionally record the latitude or distance in the notes.
+5. Save the point. It will remain static; repeat the process with updated longitude values when you need a new epoch.
+
 ## TimePassages Desktop (macOS / Windows)
 - TimePassages lets you toggle the bodies that ship with the program: major
 asteroids, centaurs, Eris/TNOs, etc. The workflow is:
@@ -43,6 +50,13 @@ an imported ephemeris cannot simply be dropped there.
 software adds import support in a future release you will find the relevant
 instructions in this directory. For now you can create a custom fixed point at a
 specific Julian Date if you just need a static reference.
+
+### Fixed-point walkthrough (TimePassages)
+1. Decide which epoch you want (for example **2025-10-18 00:00 UT** close to maximum elongation).
+2. Look up the coordinates in `apps-using-csv-files/geocentric_daily.csv`. The row for 2025-10-18 lists `lambda_deg = 209.285 deg` (approx 29 deg 17' Libra) and `beta_deg = 2.715 deg`.
+3. In TimePassages open **Edit → Chart Points…** (Windows) or **Preferences → Edit Chart Points** (macOS), switch to the **Custom Points** section, and click **Add**.
+4. Enter a descriptive name (for example `3I/ATLAS 2025-10-18 UT`) and type the longitude in the sign/degree format TimePassages uses. Store the latitude or distance in the description if you want extra context.
+5. Save and enable the custom point. Remember to replace it with a fresh longitude when you need a new snapshot.
 
 ---
 
