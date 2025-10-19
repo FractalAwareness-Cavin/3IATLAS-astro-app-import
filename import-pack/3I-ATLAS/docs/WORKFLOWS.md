@@ -32,6 +32,17 @@ Manual:
 Use *Settings → Solar System → Update Orbit Data* (Plus/Pro tiers). Keep
 `templates/skysafari/3I_ATLAS_mpc_1line.txt` for reference only.
 
+## Cartes du Ciel (SkyCharts)
+
+**Accepts:** MPC element files  
+Follow the instructions in `apps-using-mpc-files/cartes-du-ciel/README.txt`
+(GUI import or manual append to `comet.dat`).
+
+## WinStars 3
+
+**Accepts:** MPC element files  
+See `apps-using-mpc-files/winstars/README.txt` for the quick import steps.
+
 ## Solar Fire (Windows)
 
 **Accepts:** `extras.dat` orbital elements (Other Bodies)  
