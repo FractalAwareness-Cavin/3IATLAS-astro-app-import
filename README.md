@@ -74,8 +74,8 @@ Astro Gold (macOS, iOS, iPadOS) currently exposes only the built-in “Extra Poi
 4. In your chart point selection dialog tick the **Other Bodies / Extra Bodies** group and enable `3I/ATLAS` so it appears in wheels and reports.
 5. The `.txt` ephemeris files in `solar-fire/` are provided only for cross-checking daily positions; Solar Fire ignores them for new bodies.
 
-### MPC import instructions
-Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt` with any MPC comet/asteroid import dialog—examples include SkySafari/SkyVoyager, Stellarium, and KStars. Browse to the file, name the object `3I/ATLAS`, and confirm.
+### MPC-format import instructions
+Use `apps-using-mpc-files/geocentric_mpc_ephemeris.txt` with any MPC comet/asteroid import dialog—examples include SkySafari/SkyVoyager, Stellarium, KStars, Cartes du Ciel, and WinStars. Browse to the file (or the specific one-line files in the subfolders), name the object `3I/ATLAS`, and confirm.
 
 ### Astro Gold & TimePassages status
 Astro Gold (macOS, iOS, iPadOS) and TimePassages Desktop (macOS / Windows) currently expose only the vendor-supplied catalogues of extra points. They do **not** provide a way to import third-party ephemerides or orbital elements for a new moving body. See `Time-Passages-Astro-Gold/README.txt` for details, tips on using their fixed custom points, and vendor contact links if you wish to request official support.

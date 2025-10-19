@@ -15,7 +15,7 @@ offline-friendly and based on JPL SBDB solution 27 (2025-10-10).
 
 - `templates/stellarium/3I_ATLAS_mpc_elements.txt` — MPC 1-line comet element for 3I/ATLAS.
 - `templates/skysafari/3I_ATLAS_mpc_1line.txt` — same one-line for archival/reference.
-- `templates/kstars/3I_ATLAS_comets_dat_snippet.txt` — single line ready to append to `comets.dat`.
+- `templates/kstars/3I_ATLAS_comets_dat_snippet.txt` — single line ready to append to `comets.dat` (also used by Cartes du Ciel / WinStars).
 - `templates/solar_fire/3I_ATLAS_extras_dat_PLACEHOLDER.txt` — drop-in `[3I_ATLAS]` block for Solar Fire `extras.dat`.
 - `tools/3i_elements_to_formats.py` — optional converter if you ever replace the official MPC line with an updated one.
 - `docs/WORKFLOWS.md` — click-by-click instructions for Stellarium, KStars, SkySafari, Solar Fire.
