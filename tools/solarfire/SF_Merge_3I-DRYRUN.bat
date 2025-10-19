@@ -1,4 +1,5 @@
 @echo off
+echo [Windows helper] Solar Fire merge (dry-run) — see README for details.
 set SCRIPT_DIR=%~dp0
 if exist "%ProgramFiles%\PowerShell\7\pwsh.exe" (
   "%ProgramFiles%\PowerShell\7\pwsh.exe" -ExecutionPolicy Bypass -File "%SCRIPT_DIR%SF_Merge_3I.ps1" %*

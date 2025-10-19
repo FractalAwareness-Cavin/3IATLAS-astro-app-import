@@ -4,6 +4,8 @@ param(
     [switch]$Apply
 )
 
+$host.UI.WriteLine("[Windows helper] PowerShell append for KStars — see README for full instructions.")
+
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 if (-not $LineFile) {
     $candidates = @(

@@ -1,4 +1,5 @@
 @echo off
+echo [Windows helper] Solar Fire merge (apply) — see README for details.
 set SCRIPT_DIR=%~dp0
 set CMD_ARGS=-Apply
 if exist "%ProgramFiles%\PowerShell\7\pwsh.exe" (
