@@ -102,9 +102,9 @@ specific steps—unzip before running the helper scripts or copying files.
 
 ### KStars (Win/macOS/Linux)
 1. Extract the helper bundle `KStars_quick-append_Win-Mac-Linux.zip` (or open `tools/kstars/` in this repo) and run the script that matches your OS:
-   - Windows: `KStars_Append_3I-DRYRUN.bat`, then `…-APPLY.bat`.
-   - macOS: double-click `KStars_Append_3I.command`. If Gatekeeper warns “Apple could not verify…”, go to **System Settings → Privacy & Security**, set **Allow applications downloaded from** to *App Store & identified developers*, launch the script once (click **Done** in the warning), then press **Open Anyway** in Privacy & Security and relaunch.
-   - Linux: `bash KStars_Append_3I.sh`.
+   - Windows: `Windows_KStars_Append_3I-DRYRUN.bat`, then `Windows_KStars_Append_3I-APPLY.bat`.
+   - macOS: double-click `MacOS_SEEREADME_KStars_Append_3I.command`. If Gatekeeper warns “Apple could not verify…”, go to **System Settings → Privacy & Security**, set **Allow applications downloaded from** to *App Store & identified developers*, launch the script once (click **Done** in the warning), then press **Open Anyway** in Privacy & Security and relaunch.
+   - Linux: `bash tools/kstars/Linux_KStars_Append_3I.sh`.
    The helper starts in dry-run mode, shows the exact line it will append, and asks `Apply changes? (y/N)`. Type `y` and press **Enter** to proceed; you should see messages like `[OK] Backup created at …` and `[OK] Appended 3I/ATLAS…`. If you close the window without answering, no changes are made.
 2. Each helper backs up `comets.dat` before appending the new line. If your KStars install uses a different path (for example `~/Library/Application Support/kstars/comets.dat` on some macOS builds), rerun the script with `--target "full/path/to/comets.dat"`.
 3. Manual alternative: append `apps-using-mpc-files/kstars/3I_ATLAS_comets_dat_line.txt` to your `comets.dat` (default paths: `~/.local/share/kstars/` on Linux, `%LOCALAPPDATA%\kstars\` on Windows, `~/Library/Application Support/kstars/` on macOS).
