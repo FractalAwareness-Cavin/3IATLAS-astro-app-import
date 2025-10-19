@@ -6,7 +6,9 @@ LINE_FILE_DEFAULT="$SCRIPT_DIR/../3I_ATLAS_comets_dat_line.txt"
 LINE_FILE_ALT="$SCRIPT_DIR/../../import-pack/3I-ATLAS/templates/kstars/3I_ATLAS_comets_dat_snippet.txt"
 LINE_FILE=""
 TARGET_DEFAULT="$HOME/.local/share/kstars/comets.dat"
+TARGET_ALT="$HOME/Library/Application Support/kstars/comets.dat"
 TARGET="$TARGET_DEFAULT"
+TARGET_OVERRIDDEN=0
 APPLY=0
 PROMPT=1
 
@@ -20,7 +22,7 @@ USAGE
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --target) TARGET="$2"; shift 2;;
+    --target) TARGET="$2"; TARGET_OVERRIDDEN=1; shift 2;;
     --line-file) LINE_FILE="$2"; shift 2;;
     --apply|-y) APPLY=1; PROMPT=0; shift;;
     --dry-run) APPLY=0; PROMPT=0; shift;;
@@ -49,6 +51,11 @@ fi
 echo "Target comets.dat: $TARGET"
 echo
 printf '%s\n%s\n%s\n\n' '--- PREVIEW ---' "$LINE" '---------------'
+
+if [[ $TARGET_OVERRIDDEN -eq 0 && ! -e "$TARGET" && -f "$TARGET_ALT" ]]; then
+  echo "[INFO] Detected KStars Application Support data; using \"$TARGET_ALT\"."
+  TARGET="$TARGET_ALT"
+fi
 
 if [[ $PROMPT -eq 1 ]]; then
   read -r -p "Apply changes? (y/N) " resp
