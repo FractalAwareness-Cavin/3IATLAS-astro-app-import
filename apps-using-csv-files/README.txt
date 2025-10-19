@@ -3,7 +3,8 @@
 
 This folder holds the raw CSV tables generated from NASA/JPL Horizons.
 Each file uses TDB dates at 00:00 and the ecliptic of J2000 frame unless
-stated otherwise.
+stated otherwise. The `3I-ATLAS_apps_using_csv_files.zip` download mirrors
+this directory in case you prefer grabbing a ready-made archive.
 
 Files
 -----
