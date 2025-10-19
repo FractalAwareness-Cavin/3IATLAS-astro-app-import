@@ -1,3 +1,4 @@
 `.DS_Store`
 
 # Legacy release bundle ignore (zips now tracked to keep end-user kits in git)
+AGENTS.md
