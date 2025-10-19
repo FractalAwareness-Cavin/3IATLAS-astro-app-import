@@ -118,6 +118,10 @@ python3 generate_ephemeris.py
 
 The script re-queries Horizons (internet connection required), refreshes the JSON dumps in `developer/raw/`, and rewrites all output folders. `pyswisseph` is already vendored so sidereal output works out of the box.
 
+### Maintenance helpers
+- `tools/update_orbital_elements.py` — fetches the latest JPL SBDB orbital solution and refreshes all 1-line templates, KStars snippets, and Solar Fire `[3I_ATLAS]` blocks in-place.
+- `tools/verify_ephemeris.py` — compares selected dates from `geocentric_mpc_ephemeris.txt` against live Horizons data to sanity-check the ephemeris.
+
 ## Key milestones
 
 - Termination-shock entry (~94 au, inbound): **2018‑03‑22 21:14 TDB** (JD 2458200.385)

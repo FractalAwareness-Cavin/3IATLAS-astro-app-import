@@ -1,8 +1,20 @@
 ; Solar Fire user extra bodies file
 ; Place this file in Documents\Solar Fire User Files\Userdata\extras.dat
-; or merge the block labelled [3I_ATLAS] into your existing extras.dat file.
-; Values sourced from JPL SBDB solution 27 (2025-10-10).
-
+; or merge the block labelled [3I_ATLAS]
+Name = 3I/ATLAS
+Number = 0
+EpochJD = 2460884.5
+PerihelionDistance_AU = 1.356065571
+Eccentricity = 6.137350157
+Inclination_deg = 175.112857794
+AscendingNode_deg = 322.152284965
+ArgumentOfPerihelion_deg = 128.011608252
+PerihelionTime_JD = 2460977.983535961
+AbsoluteMagnitude = 12.3
+SlopeParameter = 4.5
+; Solar Fire ignores semi-major axis when Tp supplied for comets.
+; This object is hyperbolic (e>1). Verify compatibility with your Solar Fire version.
+; After copying, restart Solar Fire and enable the body under Extra Bodies.
 [3I_ATLAS]
 Name = 3I/ATLAS
 Number = 0
@@ -12,7 +24,7 @@ Eccentricity = 6.137350157
 Inclination_deg = 175.112857794
 AscendingNode_deg = 322.152284965
 ArgumentOfPerihelion_deg = 128.011608252
-PerihelionTime_JD = 2460977.9835359612
+PerihelionTime_JD = 2460977.983535961
 AbsoluteMagnitude = 12.3
 SlopeParameter = 4.5
 ; Solar Fire ignores semi-major axis when Tp supplied for comets.

@@ -22,22 +22,34 @@ def out(path):
 def parse_mpc_comet_line(line: str):
     raw = " ".join(line.strip().split())
     parts = raw.split()
-    # Heuristic: find a date token and five consecutive floats (q,e,i,ω,Ω) somewhere after it
+    # date tokens like YYYY MM DD.ddddd or YYYYMMDD.ddddd or YYYY-MM-DD.ddddd
     date_token = None
-    # date tokens like: YYYY MM DD.ddddd  OR  YYYYMMDD.ddddd  OR  YYYY-MM-DD.ddddd
+    date_decimal = None
     dt_re2 = re.compile(r"^\d{8}\.\d+$")
     dt_re3 = re.compile(r"^\d{4}-\d{2}-\d{2}(\.\d+)?$")
-    # try to assemble YYYY MM DD(.dddd) triplet
     for idx in range(len(parts)-2):
         if re.fullmatch(r"\d{4}", parts[idx]):
             try:
-                int(parts[idx+1]); float(parts[idx+2]); date_token = f"{parts[idx]} {parts[idx+1]} {parts[idx+2]}"; break
+                year = int(parts[idx])
+                month = int(parts[idx+1])
+                day = float(parts[idx+2])
+                date_token = f"{year:04d} {month:02d} {day:.5f}".rstrip('0').rstrip('.')
+                date_decimal = (year, month, day)
+                break
             except Exception:
                 pass
     if not date_token:
         for p in parts:
-            if dt_re2.match(p) or dt_re3.match(p):
-                date_token = p; break
+            if dt_re2.match(p):
+                year = int(p[0:4]); month = int(p[4:6]); day = float(p[6:])
+                date_token = f"{year:04d} {month:02d} {day:.5f}".rstrip('0').rstrip('.')
+                date_decimal = (year, month, day)
+                break
+            if dt_re3.match(p):
+                year = int(p[0:4]); month = int(p[5:7]); day = float(p[8:])
+                date_token = f"{year:04d} {month:02d} {day:.5f}".rstrip('0').rstrip('.')
+                date_decimal = (year, month, day)
+                break
     q=e=i=argperi=node=None
     for idx in range(len(parts)-4):
         try:
@@ -46,7 +58,16 @@ def parse_mpc_comet_line(line: str):
             break
         except Exception:
             continue
-    return {"raw": raw, "date_token": date_token, "q": q, "e": e, "i": i, "argperi": argperi, "node": node}
+    return {
+        "raw": raw,
+        "date_token": date_token,
+        "date_tuple": date_decimal,
+        "q": q,
+        "e": e,
+        "i": i,
+        "argperi": argperi,
+        "node": node
+    }
 
 def mjd_from_datestr(date_token: str):
     if not date_token:
@@ -83,20 +104,21 @@ def write_files(mpc_line: str, parsed: dict):
     with open(out("templates/skysafari/3I_ATLAS_mpc_1line.txt"), "w", encoding="utf-8") as f:
         f.write("# 3I/ATLAS — MPC 1-line (archive)\n")
         f.write(mpc_line.strip()+"\n")
-    # KStars snippet (best-effort)
-    mjd = mjd_from_datestr(parsed.get("date_token"))
-    line = " | ".join([
-        "3I/ATLAS",
-        str(mjd if mjd is not None else 60977),
-        f"{parsed.get('q') or ''}",
-        f"{parsed.get('e') or ''}",
-        f"{parsed.get('i') or ''}",
-        f"{parsed.get('node') or ''}",
-        f"{parsed.get('argperi') or ''}",
-        parsed.get("date_token") or "20251030.00000",
-        "MPC",
-        "0"
-    ])
+    # KStars snippet, same format as repo helpers
+    mjd = mjd_from_datestr(parsed.get("date_token")) or 60977
+    q = parsed.get('q') or 0.0
+    e = parsed.get('e') or 0.0
+    i = parsed.get('i') or 0.0
+    node = parsed.get('node') or 0.0
+    argperi = parsed.get('argperi') or 0.0
+    if parsed.get('date_tuple'):
+        year, month, day = parsed['date_tuple']
+    else:
+        year, month, day = 2025, 10, 29.48354
+    line = "3I/ATLAS | {mjd} | {q:.7f} | {e:.7f} | {i:.7f} | {node:.7f} | {argperi:.7f} | {year:04d} {month:02d} {day:.5f} | MPC | 0".format(
+        mjd=int(round(mjd)), q=q, e=e, i=i, node=node, argperi=argperi,
+        year=int(year), month=int(month), day=float(day)
+    )
     with open(out("templates/kstars/3I_ATLAS_comets_dat_snippet.txt"), "w", encoding="utf-8") as f:
         f.write("# 3I/ATLAS — KStars comets.dat line (generated)\n")
         f.write(line+"\n")

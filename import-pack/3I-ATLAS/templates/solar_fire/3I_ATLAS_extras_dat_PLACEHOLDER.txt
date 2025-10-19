@@ -11,9 +11,9 @@ Eccentricity = 6.137350157
 Inclination_deg = 175.112857794
 AscendingNode_deg = 322.152284965
 ArgumentOfPerihelion_deg = 128.011608252
-PerihelionTime_JD = 2460977.9835359612
+PerihelionTime_JD = 2460977.983535961
 AbsoluteMagnitude = 12.3
 SlopeParameter = 4.5
-; Solar Fire ignores semi-major axis when Tp is supplied for comets.
-; This object is hyperbolic (e > 1). Verify compatibility with your Solar Fire version.
+; Solar Fire ignores semi-major axis when Tp supplied for comets.
+; This object is hyperbolic (e>1). Verify compatibility with your Solar Fire version.
 ; After copying, restart Solar Fire and enable the body under Extra Bodies.
