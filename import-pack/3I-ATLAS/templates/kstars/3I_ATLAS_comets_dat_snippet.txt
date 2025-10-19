@@ -1,2 +1,2 @@
-# 3I/ATLAS — KStars comets.dat line (generated)
-3I/ATLAS | 60978 | 2025.0 | 10.0 | 30.0 | 6.320503 | 1.3797753 | 2025 10 30.0000 | MPC | 0
+# 3I/ATLAS — KStars comets.dat line (JPL SBDB solution 27)
+3I/ATLAS | 60977 | 1.3560656 | 6.1373502 | 175.1128578 | 322.1522849 | 128.0116083 | 2025 10 29.48354 | MPC | 0

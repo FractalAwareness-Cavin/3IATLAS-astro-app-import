@@ -1,10 +1,19 @@
-# Solar Fire extras.dat — placeholder for 3I/ATLAS
-# ⚠️ WARNING: The exact field order in extras.dat can vary by Solar Fire version.
-# Use File Manager → Extra Bodies and the built-in help topic “Format of the Orbital Elements File” in your version as the source of truth.
-# Typical fields (COMET class): Name, Class, q[au], e, i[deg], Ω[deg], ω[deg], T(YYYYMMDD.ddddd or JD), H, g
-# Example SKELETON (DO NOT USE VERBATIM):
-# 3I/ATLAS, COMET, 1.3797753, 6.320503, 175.12093, 322.34889, 127.77350, 20251030.00000, 15.5, 5.0
-# After editing extras.dat:
-# 1) In Displayed Points… enable “Other Bodies”
-# 2) Tick 3I/ATLAS in the list
-# 3) Restart Solar Fire if it doesn't appear immediately
+; Solar Fire user extra bodies file – 3I/ATLAS (JPL SBDB solution 27)
+; Merge this block into Documents\Solar Fire User Files\Userdata\extras.dat
+; or copy it to replace the file entirely (after backing up).
+
+[3I_ATLAS]
+Name = 3I/ATLAS
+Number = 0
+EpochJD = 2460884.5
+PerihelionDistance_AU = 1.356065571
+Eccentricity = 6.137350157
+Inclination_deg = 175.112857794
+AscendingNode_deg = 322.152284965
+ArgumentOfPerihelion_deg = 128.011608252
+PerihelionTime_JD = 2460977.9835359612
+AbsoluteMagnitude = 12.3
+SlopeParameter = 4.5
+; Solar Fire ignores semi-major axis when Tp is supplied for comets.
+; This object is hyperbolic (e > 1). Verify compatibility with your Solar Fire version.
+; After copying, restart Solar Fire and enable the body under Extra Bodies.
