@@ -16,9 +16,9 @@ files with the converter script if a newer solution is released.
 
 **Accepts:** `comets.dat` line  
 **Helpers:**
-- Windows: `tools/kstars/KStars_Append_3I-DRYRUN.bat` (preview), then `…-APPLY.bat`.  
-- macOS: double-click `tools/kstars/KStars_Append_3I.command`.  
-- Linux: run `bash tools/kstars/KStars_Append_3I.sh`.  
+- Windows: `tools/kstars/Windows_KStars_Append_3I-DRYRUN.bat` (preview), then `Windows_KStars_Append_3I-APPLY.bat`.  
+- macOS: double-click `tools/kstars/MacOS_SEEREADME_KStars_Append_3I.command`.  
+- Linux: run `bash tools/kstars/Linux_KStars_Append_3I.sh`.  
 All helpers back up the file before appending.
 
 Manual:
