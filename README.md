@@ -2,10 +2,17 @@
 
 Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated straight from NASA/JPL Horizons and organised so astrologers can drop the body into their favorite apps. Coverage spans the comet’s passage through the heliosphere (2016‑01‑01 → 2040‑12‑31).
 
-These can be used with many apps such as SkySafari/SkyVoyager, Stellarium, KStars
-and Solar Fire along with others that can consume MPC data. Astro Gold and
-TimePassages still lack moving-body import hooks, but we include notes on how to
-define fixed custom points if you want a static reference.
+Supported apps (moving-body import)
+----------------------------------
+- **Stellarium** (Win/macOS/Linux) — Solar System Editor import in MPC format.
+- **KStars** (Win/macOS/Linux) — append to `comets.dat` (helpers provided).
+- **Solar Fire** (Windows) — merge the `[3I_ATLAS]` block into `extras.dat`.
+- **Cartes du Ciel / SkyCharts** (Win/macOS/Linux) — import the MPC one-line or append to `comet.dat`.
+- **WinStars 3** (Win/macOS/Linux) — paste the MPC one-line into the object editor.
+- **SkySafari / SkyVoyager Plus/Pro** (iOS/Android/macOS) — update orbit data from MPC feeds.
+
+Apps without moving-body import hooks:
+- **Astro Gold** (macOS/iOS/iPadOS) and **TimePassages** (macOS/Windows). We include fixed-point tips if you need a static reference.
 
 If anything here feels clumsy or you run into trouble, feel free to
 [email me](mailto:cavinbirdseyetarot@gmail.com) and I’ll keep polishing it.
