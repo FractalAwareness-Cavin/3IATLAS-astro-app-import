@@ -19,4 +19,4 @@ General workflow:
 3. Browse to the file and import as `3I/ATLAS`.
 
 For platform-specific helper scripts (Windows/macOS/Linux) and one-line element templates,
-see `import-pack/3I-ATLAS/`.
+see `import-pack/3I-ATLAS/` or grab the ready-made zips from the release page.
