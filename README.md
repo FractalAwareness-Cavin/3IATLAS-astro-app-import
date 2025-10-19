@@ -2,9 +2,13 @@
 
 Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated straight from NASA/JPL Horizons and organised so astrologers can drop the body into their favorite apps. Coverage spans the comet’s passage through the heliosphere (2016‑01‑01 → 2040‑12‑31).
 
-These can be used with many apps such as SkySafari/SkyVoyager, Stellarium, KStars and Solar Fire along with others that can use the listed file types. For Astro Gold and TimePassages, unfortunately, there's no way to import new moving bodies. However, we have listed instructions about how to add it as a non-moving body for these apps if desired.
+These can be used with many apps such as SkySafari/SkyVoyager, Stellarium, KStars
+and Solar Fire along with others that can consume MPC data. Astro Gold and
+TimePassages still lack moving-body import hooks, but we include notes on how to
+define fixed custom points if you want a static reference.
 
-This is a work-in-progress. Some of the apps weren't as easy to modify as imagined, so please be cautious and if anything is difficult or too technical, feel free to [email me](mailto:cavinbirdseyetarot@gmail.com). I'll try to fix it up quickly if possible. I'm still working to make sure all the apps will actually work, so if they don't, then again you may [email me](mailto:cavinbirdseyetarot@gmail.com)).
+If anything here feels clumsy or you run into trouble, feel free to
+[email me](mailto:cavinbirdseyetarot@gmail.com) and I’ll keep polishing it.
 
 
 
@@ -25,7 +29,8 @@ Use the folder that matches your app or download the zip files below. If you are
 - [MPC ephemeris (80-column)](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
 - [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
 
-Each zip contains the files from the matching folder plus a `README.txt` with the instructions below—unzip the bundle before importing into your software.
+Each zip mirrors the matching folder and includes a `README.txt` with the
+specific steps—unzip before running the helper scripts or copying files.
 
 Need step-by-step instructions? Jump to:
 - [Solar Fire (Windows)](#solar-fire-instructions-windows)
