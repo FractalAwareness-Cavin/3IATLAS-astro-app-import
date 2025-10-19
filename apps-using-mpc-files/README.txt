@@ -29,7 +29,10 @@ From the download zip, run the helper that matches your platform in `tools/` (th
    - Windows: `Windows_KStars_Append_3I-APPLY.bat`  
    - macOS: rerun the `.command` script and answer **y** when prompted  
    - Linux: `bash tools/Linux_KStars_Append_3I.sh --apply`
-3. Restart KStars. Open **Tools → Solar System… → Comets**, raise the magnitude limit if needed, tick `3I/ATLAS`, and click **OK**.
+3. Restart KStars. Use the skymap tools to work with the comet:
+   - Press the search icon (or **Pointing → Find Object…** / `Ctrl+F`), type `3I/ATLAS`, and press **Ok** to center and track it. Accept the below-horizon warning if it appears.
+   - Once it is visible, you can also right-click the comet and choose **Center & Track** to keep it locked.
+   - For a heliocentric view, open **Tools → Solar System** (`Ctrl+Y`) to launch the Solar System Viewer and inspect the orbit alongside the planets.
 
 Manual alternative: go to **Settings → Configure KStars → Solar System** (older builds use **Data → Solar System Updates**). In the **Comets** tab choose **Import**, select `geocentric_mpc_ephemeris.txt`, and confirm. KStars saves to `comets.dat`; the helper scripts back that file up automatically before writing.
 

@@ -30,7 +30,8 @@ Run the helper (all platforms)
 After appending
 ---------------
 1. Restart KStars so it reloads `comets.dat`.
-2. Open **Tools → Solar System… → Comets**, enable **Show comets**, increase the magnitude limit if needed, tick `3I/ATLAS` (or `C/2025 N1`), and click **OK**.
+2. Use **Pointing → Find Object…** (or the search icon / `Ctrl+F`) to look up `3I/ATLAS`, then press **Ok** to center and track it. If warned that the comet is below the horizon, acknowledge the message.
+3. Right-click the comet and choose **Center & Track** to keep it in view, or open **Tools → Solar System** (`Ctrl+Y`) for the Solar System Viewer if you want to inspect the orbit from above.
 
 Manual alternative
 ------------------
