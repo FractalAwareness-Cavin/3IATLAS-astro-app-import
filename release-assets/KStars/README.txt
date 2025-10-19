@@ -18,7 +18,7 @@ Run the helper (all platforms)
 ------------------------------
 1. **Preview first.**
    - Windows: double-click `tools/Windows_KStars_Append_3I-DRYRUN.bat`.
-   - macOS: double-click `tools/MacOS_SEEREADME_KStars_Append_3I.command`. Approve Gatekeeper if macOS warns about the download.
+   - macOS: double-click `tools/MacOS_SEEREADME_KStars_Append_3I.command`. Approve Gatekeeper if macOS warns about the download. When the dialog offers **Move to Trash**, remember it is just macOS reacting to an unsigned helper—choose **Cancel**, open **System Settings → Privacy & Security**, click **Open Anyway**, and launch it again. macOS will then prompt for Touch ID or your account password; that prompt belongs to macOS, and the script never sees your credentials.
    - Linux: open a terminal and run `bash tools/Linux_KStars_Append_3I.sh --dry-run`.
    You will see the detected `comets.dat` path and the single line that will be appended.
 2. **Apply when satisfied.**
