@@ -1,4 +1,5 @@
 @echo off
+echo [Windows helper] KStars append (dry-run) — see README for details.
 set SCRIPT_DIR=%~dp0
 if exist "%ProgramFiles%\PowerShell\7\pwsh.exe" (
   "%ProgramFiles%\PowerShell\7\pwsh.exe" -ExecutionPolicy Bypass -File "%SCRIPT_DIR%KStars_Append_3I.ps1" %*

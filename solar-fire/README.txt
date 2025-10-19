@@ -13,6 +13,9 @@ Contents
 --------
 - `extras.dat`: ready-made `[3I_ATLAS]` block (see below) plus comments for manual merges.
 - `geocentric_daily_solarfire.txt` and similar files: optional reference tables if you need to spot-check positions outside Solar Fire.
+- `tools/SF_Merge_3I-DRYRUN.bat`: Windows preview helper; shows the planned merge and exits.
+- `tools/SF_Merge_3I-APPLY.bat`: Windows apply helper; writes the block after backing up `extras.dat`.
+- `tools/SF_Merge_3I.ps1`: PowerShell backend used by both batch files (can be run directly if desired).
 
 Example block
 -------------

@@ -4,6 +4,8 @@ param(
     [string]$SourceExtras
 )
 
+Write-Host "[Windows helper] PowerShell merge for Solar Fire — see README for full instructions."
+
 function Combine-Path([string]$base, [string]$child) {
     return [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($base, $child))
 }
