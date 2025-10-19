@@ -109,11 +109,10 @@ specific steps—unzip before running the helper scripts or copying files.
    The helper starts in dry-run mode, shows the exact line it will append, and asks `Apply changes? (y/N)`. Type `y` and press **Enter** to proceed; you should see messages like `[OK] Backup created at …` and `[OK] Appended 3I/ATLAS…`. If you close the window without answering, no changes are made.
 3. Each helper backs up `comets.dat` before appending the new line. If your KStars install uses a different path (for example `~/Library/Application Support/kstars/comets.dat` on some macOS builds), rerun the script with `--target "full/path/to/comets.dat"`.
 4. Manual alternative: append `apps-using-mpc-files/kstars/3I_ATLAS_comets_dat_line.txt` to your `comets.dat` (default paths: `~/.local/share/kstars/` on Linux, `%LOCALAPPDATA%\kstars\` on Windows, `~/Library/Application Support/kstars/` on macOS).
-5. Quit KStars completely, relaunch it, then open **Tools → Solar System…**:
-   - Click the **Comets** tab/button on the left.
-   - Tick **Show comets** and drag the magnitude limit slider high enough (e.g. 20) so faint objects are visible.
-   - Use the filter box above the list to search for `3I/ATLAS` (or `C/2025 N1 (ATLAS)`), tick the checkbox, then press **OK**.
-   - You can now locate the comet with **Find (Ctrl/⌘+F)** or open **Tools → Solar System → Solar System Viewer** to inspect its position.
+5. Quit KStars completely and relaunch it. To jump to the comet:
+   - Press the search icon (or **Pointing → Find Object…** / `Ctrl+F`), type `3I/ATLAS`, and press **Ok** to center and track it. KStars will warn if the comet is below the horizon—acknowledge and continue.
+   - Alternatively, click the comet on the skymap (once visible) and use the **Center & Track** entry in its right-click popup menu.
+   - For a heliocentric overview, open **Tools → Solar System** (`Ctrl+Y`) to launch the Solar System Viewer; 3I/ATLAS appears alongside the planets and you can zoom or adjust the timestep there.
 
 ### Solar Fire (Windows)
 

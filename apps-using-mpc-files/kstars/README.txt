@@ -24,7 +24,10 @@ Recommended workflow
    - Windows: run `Windows_KStars_Append_3I-APPLY.bat`.  
    - macOS: relaunch the `.command` script and answer **y** when prompted.  
    - Linux: `bash tools/Linux_KStars_Append_3I.sh --apply`.
-3. Restart KStars. Open **Tools → Solar System… → Comets**, raise the magnitude limit if necessary, tick `3I/ATLAS`, and click **OK**.
+3. Restart KStars. Use the built-in tools to jump to the comet:
+   - Press the search icon (or **Pointing → Find Object…** / `Ctrl+F`), type `3I/ATLAS`, and press **Ok**. If KStars warns that the comet is below the horizon, acknowledge it and continue.
+   - Once the comet is in view, right-click and choose **Center & Track** to keep it locked.
+   - For a heliocentric overview, open **Tools → Solar System** (`Ctrl+Y`) to launch the Solar System Viewer and inspect the orbit alongside the planets.
 
 Manual alternative
 ------------------
@@ -33,9 +36,9 @@ Copy `3I_ATLAS_comets_dat_line.txt`, back up your existing `comets.dat` (`~/.loc
 macOS Gatekeeper
 ----------------
 If macOS reports that it “cannot verify `MacOS_SEEREADME_KStars_Append_3I.command`”:
-1. Open **System Settings → Privacy & Security**, set **Allow applications downloaded from** to *App Store & identified developers* if needed.
-2. Run the `.command` file once; when the warning appears choose **Cancel** (or **Done**).
-3. Back in **Privacy & Security**, click **Open Anyway** for the helper. Approve the prompt on the next launch.
+1. Run the `.command` file once and click **Done** in the warning dialog.
+2. Open **System Settings → Privacy & Security**, scroll to the bottom, and click **Open Anyway**.
+3. macOS reopens the helper automatically; choose **Open** and approve with Touch ID or your password (the helper never sees your credentials). Terminal will then ask whether to apply the change—type `y` and press **Enter** when ready.
 
 Regenerate the comet line
 -------------------------
