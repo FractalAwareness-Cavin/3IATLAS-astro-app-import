@@ -3,7 +3,7 @@
 Daily ephemerides for the interstellar comet **3I/ATLAS (C/2025 N1)**, generated straight from NASA/JPL Horizons and organised so astrologers can drop the body into their favorite apps. Coverage spans the comet’s passage through the heliosphere (2016‑01‑01 → 2040‑12‑31). The current build references **Horizons solution #27 (2025‑10‑10)**; rerun `tools/update_orbital_elements.py` whenever JPL posts a newer solution and you want the helpers to reflect it.
 
 ## Quick start
-1. Download the release bundle that matches your app (see **End-user direct downloads** below) or clone this repository.
+1. Download the ready-made zip that matches your app (see **End-user direct downloads** below) or clone this repository.
 2. Unzip the bundle so you can see the per-app `README` inside each folder.
 3. Follow the checklist in that `README` (localized copies live under `docs/localized/`) or run the helper script included for Solar Fire, KStars, and Stellarium.
 4. Optional maintenance: run `python tools/update_orbital_elements.py` to pull the latest SBDB solution and `python tools/verify_ephemeris.py` to spot-check a few dates against live Horizons before distributing updates.
@@ -94,21 +94,22 @@ specific steps—unzip before running the helper scripts or copying files.
 ## App-specific instructions
 
 ### Stellarium (Win/macOS/Linux)
-1. Press `F2`, open **Plugins → Solar System Editor**, enable **Load at startup**, and click **Configure** (restart Stellarium if you just turned it on).
-2. After restart choose **Solar System Editor → Configure → Solar System → Import orbital elements in MPC format → File**.
-3. Select `import-pack/3I-ATLAS/templates/stellarium/3I_ATLAS_mpc_elements.txt` (or the same file inside the release ZIP).
-4. Leave **Object type** as *Comet*, set **Object name** to `3I/ATLAS`, and click **Add objects**.
-5. Use `F3` (search) to confirm `3I/ATLAS` now resolves; toggle it on in the Solar System list if required.
+1. Download the ready-made Stellarium import kit: [`Stellarium_quick-import.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/Stellarium_quick-import.zip). Unzip it so `3I_ATLAS_mpc_1line.txt` sits in an easy-to-find folder.
+2. Press `F2`, open **Plugins → Solar System Editor**, enable **Load at startup**, and click **Configure** (restart Stellarium if you just turned it on).
+3. After restart choose **Solar System Editor → Configure → Solar System → Import orbital elements in MPC format → File**.
+4. Pick the `3I_ATLAS_mpc_1line.txt` you just extracted, leave **Object type** as *Comet*, keep **Object name** set to `3I/ATLAS`, and click **Add objects**.
+5. Use `F3` (search) to confirm `3I/ATLAS` now resolves; toggle it on in the Solar System list if required. Restart Stellarium if the search does not find it on the first try.
 
 ### KStars (Win/macOS/Linux)
-1. Extract the helper bundle `KStars_quick-append_Win-Mac-Linux.zip` (or open `tools/kstars/` in this repo) and run the script that matches your OS:
+1. Download the ready-made KStars helper kit: [`KStars_quick-append_Win-Mac-Linux.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/KStars_quick-append_Win-Mac-Linux.zip). Unzip it before running the helpers (the same scripts also live in `tools/kstars/` for power users).
+2. Run the script that matches your OS:
    - Windows: `Windows_KStars_Append_3I-DRYRUN.bat`, then `Windows_KStars_Append_3I-APPLY.bat`.
    - macOS: double-click `MacOS_SEEREADME_KStars_Append_3I.command`. If Gatekeeper warns “Apple could not verify…”, go to **System Settings → Privacy & Security**, set **Allow applications downloaded from** to *App Store & identified developers*, launch the script once (click **Done** in the warning), then press **Open Anyway** in Privacy & Security and relaunch.
    - Linux: `bash tools/kstars/Linux_KStars_Append_3I.sh`.
    The helper starts in dry-run mode, shows the exact line it will append, and asks `Apply changes? (y/N)`. Type `y` and press **Enter** to proceed; you should see messages like `[OK] Backup created at …` and `[OK] Appended 3I/ATLAS…`. If you close the window without answering, no changes are made.
-2. Each helper backs up `comets.dat` before appending the new line. If your KStars install uses a different path (for example `~/Library/Application Support/kstars/comets.dat` on some macOS builds), rerun the script with `--target "full/path/to/comets.dat"`.
-3. Manual alternative: append `apps-using-mpc-files/kstars/3I_ATLAS_comets_dat_line.txt` to your `comets.dat` (default paths: `~/.local/share/kstars/` on Linux, `%LOCALAPPDATA%\kstars\` on Windows, `~/Library/Application Support/kstars/` on macOS).
-4. Quit KStars completely, relaunch it, then open **Tools → Solar System…**:
+3. Each helper backs up `comets.dat` before appending the new line. If your KStars install uses a different path (for example `~/Library/Application Support/kstars/comets.dat` on some macOS builds), rerun the script with `--target "full/path/to/comets.dat"`.
+4. Manual alternative: append `apps-using-mpc-files/kstars/3I_ATLAS_comets_dat_line.txt` to your `comets.dat` (default paths: `~/.local/share/kstars/` on Linux, `%LOCALAPPDATA%\kstars\` on Windows, `~/Library/Application Support/kstars/` on macOS).
+5. Quit KStars completely, relaunch it, then open **Tools → Solar System…**:
    - Click the **Comets** tab/button on the left.
    - Tick **Show comets** and drag the magnitude limit slider high enough (e.g. 20) so faint objects are visible.
    - Use the filter box above the list to search for `3I/ATLAS` (or `C/2025 N1 (ATLAS)`), tick the checkbox, then press **OK**.
@@ -117,41 +118,44 @@ specific steps—unzip before running the helper scripts or copying files.
 ### Solar Fire (Windows)
 
 > [!WARNING]
-> Always keep a backup of `extras.dat` before merging new bodies. The helper scripts ship with the release bundle and create timestamped copies automatically.
+> Always keep a backup of `extras.dat` before merging new bodies. The helper scripts ship with the download kit and create timestamped copies automatically.
 
-1. Run `tools/solarfire/SF_Merge_3I-DRYRUN.bat` to preview, then `…-APPLY.bat` to merge the `[3I_ATLAS]` block safely.
-2. Manual workflow: copy the block from `import-pack/3I-ATLAS/templates/solar_fire/3I_ATLAS_extras_dat_PLACEHOLDER.txt` into `Documents\Solar Fire User Files\Points & Colors\extras.dat`, preserving any existing custom entries.
-3. Launch Solar Fire, open **File → File Types…**, and ensure **Extra Bodies** points at the updated file.
-4. In your chart point selection dialog, expand **Other Bodies / Extra Bodies** and enable `3I/ATLAS`.
-5. The `.txt` ephemerides under `solar-fire/` are reference tables only—Solar Fire still reads the orbital elements from `extras.dat`.
+1. Download the ready-made Solar Fire helper kit: [`SolarFire_merge-helper_Windows.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/SolarFire_merge-helper_Windows.zip) and unzip it. (If you prefer the full data set, grab [`3I-ATLAS_solar_fire.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_solar_fire.zip).)
+2. Run `tools/solarfire/SF_Merge_3I-DRYRUN.bat` (or `tools/SF_Merge_3I-DRYRUN.bat` inside the kit) to preview, then `…-APPLY.bat` to merge the `[3I_ATLAS]` block safely.
+3. Manual workflow: copy the block from `import-pack/3I-ATLAS/templates/solar_fire/3I_ATLAS_extras_dat_PLACEHOLDER.txt` into `Documents\Solar Fire User Files\Points & Colors\extras.dat`, preserving any existing custom entries.
+4. Launch Solar Fire, open **File → File Types…**, and ensure **Extra Bodies** points at the updated file.
+5. In your chart point selection dialog, expand **Other Bodies / Extra Bodies** and enable `3I/ATLAS`.
+6. The `.txt` ephemerides under `solar-fire/` are reference tables only—Solar Fire still reads the orbital elements from `extras.dat`.
 
 ### Cartes du Ciel / SkyCharts (Win/macOS/Linux)
-1. Start the program and open **Setup → Solar system** (`Ctrl+F3`).
-2. On the **Comets** tab choose **Update → Import from MPC file**.
-3. Select `apps-using-mpc-files/cartes-du-ciel/3I_ATLAS_mpc_1line.txt` (or the copy in the release ZIP) and confirm.
-4. Tick **3I/ATLAS** in the list, click **OK**, and the comet is ready for use.
-5. Manual option: append the same line to your `comet.dat` (default paths: `%LOCALAPPDATA%\Skychart\cat\` on Windows, `~/.skychart/cat/` on Linux, `~/Library/Application Support/skychart.cat/` on macOS).
+1. Download the ready-made MPC toolkit (covers Cartes du Ciel, WinStars, SkySafari, and other MPC-friendly apps): [`3I-ATLAS_apps_using_mpc_files.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip). Unzip it and note `cartes-du-ciel/3I_ATLAS_mpc_1line.txt`.
+2. Start the program and open **Setup → Solar system** (`Ctrl+F3`).
+3. On the **Comets** tab choose **Update → Import from MPC file**.
+4. Select the one-line file you extracted and confirm.
+5. Tick **3I/ATLAS** in the list, click **OK**, and the comet is ready for use.
+6. Manual option: append the same line to your `comet.dat` (default paths: `%LOCALAPPDATA%\Skychart\cat\` on Windows, `~/.skychart/cat/` on Linux, `~/Library/Application Support/skychart.cat/` on macOS).
 
 ### WinStars 3 (Win/macOS/Linux)
-1. Open **Preferences → Solar system → Import orbital elements** (or **Add object**).
-2. Choose **MPC single line**, paste the contents of `apps-using-mpc-files/winstars/3I_ATLAS_mpc_1line.txt`, and save.
-3. Confirm that `3I/ATLAS` is enabled in the object list; restart if the comet catalogue was cached.
-4. Power users can append the same line to the WinStars comet database (`%APPDATA%\WinStars3\databases\comets.txt` on Windows, `~/.config/WinStars3/databases/comets.txt` on Linux).
+1. If you have not already, download and unzip [`3I-ATLAS_apps_using_mpc_files.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip); the WinStars one-line file lives under `winstars/`.
+2. Open **Preferences → Solar system → Import orbital elements** (or **Add object**).
+3. Choose **MPC single line**, paste the contents of `3I_ATLAS_mpc_1line.txt`, and save.
+4. Confirm that `3I/ATLAS` is enabled in the object list; restart if the comet catalogue was cached.
+5. Power users can append the same line to the WinStars comet database (`%APPDATA%\WinStars3\databases\comets.txt` on Windows, `~/.config/WinStars3/databases/comets.txt` on Linux).
 
 ### SkySafari / SkyVoyager Plus/Pro (iOS/Android/macOS)
-1. Copy `import-pack/3I-ATLAS/templates/skysafari/3I_ATLAS_mpc_1line.txt` into a note or text editor you can open on the device.
+1. Download [`3I-ATLAS_apps_using_mpc_files.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip) and copy `skysafari/3I_ATLAS_mpc_1line.txt` into a note or text editor you can open on the device.
 2. In SkySafari go to **Settings → Solar System → Solar System Data → Import Comet Data** (older builds: **Update Orbit Data → Custom Comet/Asteroid**).
 3. Paste the MPC line, ensure the name reads `3I/ATLAS`, and confirm.
 4. Search for `3I/ATLAS` to add it to observing lists. Re-run the import whenever you update the orbital solution.
 
 ### Astro Gold (macOS/iOS/iPadOS)
-Astro Gold currently exposes only the vendor-supplied “Extra Points” catalogue. There is no supported workflow to import third-party orbital elements for a new moving body. You can create fixed custom points for snapshot coordinates (see `Time-Passages-Astro-Gold/README.txt` for a walkthrough) or contact Esoteric Technologies to request native support.
+Astro Gold currently exposes only the vendor-supplied “Extra Points” catalogue. There is no supported workflow to import third-party orbital elements for a new moving body. You can create fixed custom points for snapshot coordinates—download the CSV data kit [`3I-ATLAS_apps_using_csv_files.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip), open `geocentric_daily.csv` to grab the longitude/latitude you need, then follow the walkthrough in `Time-Passages-Astro-Gold/README.txt`. You can also contact Esoteric Technologies to request native support.
 
 ### TimePassages Desktop (macOS/Windows)
-TimePassages also limits users to the built-in catalogues. Use **Edit → Chart Points… → Custom Points** to record a fixed longitude/latitude for a chosen epoch, and update manually when you need a new snapshot. Refer to `Time-Passages-Astro-Gold/README.txt` for detailed steps and vendor contact links.
+TimePassages also limits users to the built-in catalogues. Download [`3I-ATLAS_apps_using_csv_files.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip), open `geocentric_daily.csv` (or the sidereal variants) for the longitude/latitude you need, then use **Edit → Chart Points… → Custom Points** to store a fixed snapshot. Update the value manually when you need a new epoch. Refer to `Time-Passages-Astro-Gold/README.txt` for detailed steps and vendor contact links.
 
 ### Import pack & helper scripts
-If you grabbed the release bundles listed above, you already have the platform-specific helpers. The raw files live in `import-pack/3I-ATLAS/`:
+If you grabbed the download bundles listed above, you already have the platform-specific helpers. The raw files live in `import-pack/3I-ATLAS/`:
 
 - `Stellarium_quick-import.zip` — MPC one-line plus README.
 - `KStars_quick-append_Win-Mac-Linux.zip` — cross-platform scripts that back up and append the `comets.dat` entry.

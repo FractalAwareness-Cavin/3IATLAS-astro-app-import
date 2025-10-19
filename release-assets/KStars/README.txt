@@ -1,35 +1,40 @@
 3I/ATLAS — KStars Quick Append (Windows/macOS/Linux)
-===================================================
+====================================================
 
-Helpers in `tools/` back up your `comets.dat`, show a preview, then append 3I/ATLAS
-(JPL SBDB solution 27).
+The helpers in `tools/` back up your `comets.dat`, remove any older 3I/ATLAS entry, and append the refreshed line sourced from **JPL SBDB solution 27 (2025-10-10)**.
 
-Files by platform
------------------
-- `MacOS_SEEREADME_KStars_Append_3I.command` — macOS helper (auto-detects `~/Library/Application Support/kstars/comets.dat`).
-- `Linux_KStars_Append_3I.sh` — Linux helper.
-- `Windows_KStars_Append_3I-DRYRUN.bat` — Windows preview wrapper.
-- `Windows_KStars_Append_3I-APPLY.bat` — Windows apply wrapper.
-- `Windows_KStars_Append_3I.ps1` — PowerShell backend invoked by both batch files.
-- `append_line.sh` — cross-platform backend used by all launchers.
-- `3I_ATLAS_comets_dat_line.txt` — manual line for `comets.dat`.
-- `3I_ATLAS_mpc_1line.txt` — MPC single line (shared with Stellarium/SkySafari).
+Files inside this zip
+---------------------
+- `tools/MacOS_SEEREADME_KStars_Append_3I.command`
+- `tools/Linux_KStars_Append_3I.sh`
+- `tools/Windows_KStars_Append_3I-DRYRUN.bat`
+- `tools/Windows_KStars_Append_3I-APPLY.bat`
+- `tools/Windows_KStars_Append_3I.ps1`
+- `tools/append_line.sh`
+- `3I_ATLAS_comets_dat_line.txt` (manual snippet)
+- `3I_ATLAS_mpc_1line.txt` (shared MPC element)
 
-macOS
------
-1. Open **System Settings → Privacy & Security**. If needed, set **Allow applications downloaded from** to *App Store & identified developers*.
-2. Run `MacOS_SEEREADME_KStars_Append_3I.command`. When the preview appears, type `y` and press **Enter**. Gatekeeper may require you to click **Done** and then **Open Anyway** once.
-
-Linux
------
-1. Run `bash tools/Linux_KStars_Append_3I.sh --apply` (or invoke `append_line.sh` directly).
-
-Windows
--------
-1. Run `Windows_KStars_Append_3I-DRYRUN.bat` to preview.
-2. Run `Windows_KStars_Append_3I-APPLY.bat` to write the change.
-
-After appending (all platforms)
+Run the helper (all platforms)
 ------------------------------
+1. **Preview first.**
+   - Windows: double-click `tools/Windows_KStars_Append_3I-DRYRUN.bat`.
+   - macOS: double-click `tools/MacOS_SEEREADME_KStars_Append_3I.command`. Approve Gatekeeper if macOS warns about the download.
+   - Linux: open a terminal and run `bash tools/Linux_KStars_Append_3I.sh --dry-run`.
+   You will see the detected `comets.dat` path and the single line that will be appended.
+2. **Apply when satisfied.**
+   - Windows: run `tools/Windows_KStars_Append_3I-APPLY.bat`.
+   - macOS: run the `.command` file again and answer **y** at the prompt.
+   - Linux: run `bash tools/Linux_KStars_Append_3I.sh --apply`.
+   Each script creates a timestamped backup before writing.
+
+After appending
+---------------
 1. Restart KStars so it reloads `comets.dat`.
-2. Go to **Tools → Solar System… → Comets**, enable **Show comets**, raise the magnitude limit, search for `3I/ATLAS` (or `C/2025 N1`), tick it, and click **OK**.
+2. Open **Tools → Solar System… → Comets**, enable **Show comets**, increase the magnitude limit if needed, tick `3I/ATLAS` (or `C/2025 N1`), and click **OK**.
+
+Manual alternative
+------------------
+Copy `3I_ATLAS_comets_dat_line.txt`, back up your existing `comets.dat`, remove any older 3I/ATLAS lines, append the new one, then restart KStars. Typical locations:
+- Linux: `~/.local/share/kstars/comets.dat`
+- macOS: `~/Library/Application Support/kstars/comets.dat`
+- Windows: `%APPDATA%\kstars\comets.dat`

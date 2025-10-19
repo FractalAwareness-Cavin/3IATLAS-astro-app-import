@@ -1,4 +1,3 @@
 `.DS_Store`
 
-# Release bundles
-3I-ATLAS_*.zip
+# Legacy release bundle ignore (zips now tracked to keep end-user kits in git)
