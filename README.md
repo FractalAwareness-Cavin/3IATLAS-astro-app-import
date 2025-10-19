@@ -19,15 +19,17 @@ Use the folder that matches your app or download the zip files below. If you are
 - `Time-Passages-Astro-Gold/` – explanation of why Astro Gold and TimePassages currently cannot import new moving bodies, plus tips for their fixed custom points.
 
 #### End-user direct downloads
-- [Solar Fire kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_solar_fire.zip)
-- [MPC import kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip) (SkySafari/SkyVoyager, Stellarium, and KStars)
+- [Solar Fire merge helper (Windows)](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/SolarFire_merge-helper_Windows.zip)
+- [KStars quick append bundle (Win/macOS/Linux)](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/KStars_quick-append_Win-Mac-Linux.zip)
+- [Stellarium quick import](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/Stellarium_quick-import.zip)
+- [MPC ephemeris (80-column)](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
 - [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
 
 Each zip contains the files from the matching folder plus a `README.txt` with the instructions below—unzip the bundle before importing into your software.
 
 Need step-by-step instructions? Jump to:
-- [Solar Fire (Windows)](#solar-fire-instructions (Windows))
-- [MPC-format import](#mpc-import-instructions)
+- [Solar Fire (Windows)](#solar-fire-instructions-windows)
+- [MPC-format import](#mpc-format-import-instructions)
 - [CSV usage](#csv-usage-notes)
 - [Astro Gold & TimePassages status](#astro-gold--timepassages-status)
 
@@ -42,6 +44,19 @@ Need step-by-step instructions? Jump to:
 
 ## App-specific instructions
 
+### Import pack & helper scripts
+If you grabbed the release bundles listed above, you already have the
+platform-specific helpers. The raw files live in `import-pack/3I-ATLAS/` in this
+repository:
+
+- `Stellarium_quick-import.zip` — one MPC 1-line plus a README.
+- `KStars_quick-append_Win-Mac-Linux.zip` — Windows/macOS/Linux helpers that
+  preview, back up, and append the `comets.dat` entry.
+- `SolarFire_merge-helper_Windows.zip` — helper that backs up `extras.dat` and
+  merges the new `[3I_ATLAS]` block.
+
+All helpers default to a dry-run so you can inspect changes before applying.
+
 ### Astro Gold status
 Astro Gold (macOS, iOS, iPadOS) currently exposes only the built-in “Extra Points” catalogue; it does **not** provide an import workflow for third-party ephemerides or orbital elements. Keep an eye on the vendor’s updates—if 3I/ATLAS is added to their catalogue it can be enabled via **Settings → Displayed/Chart Points**.
 
@@ -49,12 +64,12 @@ Astro Gold (macOS, iOS, iPadOS) currently exposes only the built-in “Extra Poi
 
 > [!WARNING]
 >
-> This is still a work in progress. If you already have extra bodies in your extras.dat, and you replace it with the one here, it will **erase your previous custom astrological bodies.**
+> Always back up `extras.dat` before merging. The helper scripts included in
+> the release bundle do this automatically; replacing the file manually can
+> erase any other custom bodies.
 
-
-
-1. Quit Solar Fire and back up `Documents\Solar Fire User Files\Points & Colors\extras.dat`.
-2. Merge the `[3I_ATLAS]` block from `solar-fire/extras.dat` (this repo) into your user `extras.dat` or replace the file if you have no other custom entries.
+1. **Recommended:** run `tools/solarfire/SF_Merge_3I-DRYRUN.bat` (from the release zip) to preview, then `…-APPLY.bat` to merge the new block. Each run creates a timestamped backup.
+2. Manual alternative: copy or merge the `[3I_ATLAS]` block in `solar-fire/extras.dat` into your `Documents\Solar Fire User Files\Points & Colors\extras.dat`.
 3. Relaunch Solar Fire. Under **File → File Types…** choose **Extra Bodies** to confirm the file is active.
 4. In your chart point selection dialog tick the **Other Bodies / Extra Bodies** group and enable `3I/ATLAS` so it appears in wheels and reports.
 5. The `.txt` ephemeris files in `solar-fire/` are provided only for cross-checking daily positions; Solar Fire ignores them for new bodies.
