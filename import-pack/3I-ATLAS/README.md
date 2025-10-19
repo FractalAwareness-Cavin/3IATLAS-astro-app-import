@@ -1,18 +1,26 @@
 # 3I/ATLAS Import Pack
 
-## TL;DR
+Quick-start templates, helper scripts, and documentation for bringing
+**3I/ATLAS (C/2025 N1)** into MPC-compatible astronomy software.
 
-Paste a single **MPC 1-line** for `3I/ATLAS` (aka `C/2025 N1 (ATLAS)`), run the tool, then import into Stellarium; paste the generated line into KStars; Solar Fire has a guarded `extras.dat` path; Astro Gold/TimePassages can’t import new moving bodies today.
+## Contents
+- `docs/INSTALL_3I-ATLAS.md` — overview, caveats, and quickstart (currently v0.2).
+- `docs/WORKFLOWS.md` — click-by-click instructions for Stellarium, KStars,
+  SkySafari, Solar Fire, and notes on non-supporting apps.
+- `templates/` — ready-to-use MPC 1-line elements, KStars `comets.dat` line, and
+  Solar Fire `[3I_ATLAS]` block (all based on JPL SBDB solution 27).
+- `tools/3i_elements_to_formats.py` — optional converter if you paste a newer
+  MPC 1-line; rewrites the templates automatically.
+- `tools/kstars/` — Windows/macOS/Linux helpers that back up and append the
+  KStars line.
+- `tools/solarfire/` — Windows helpers that back up and merge the `extras.dat`
+  block for 3I/ATLAS.
 
-## Status
+## Usage snapshot
+- Stellarium: import the supplied one-line via **Solar System Editor → Import elements in MPC format → File**.
+- KStars: run the helper script for your OS or append the provided `comets.dat` line manually.
+- SkySafari: use **Settings → Solar System → Update Orbit Data** (Plus/Pro tiers).  
+- Solar Fire: merge the `[3I_ATLAS]` block into `extras.dat` (backup first).  
+- Astro Gold / TimePassages: currently no moving-body import; see the repository notes if you need fixed custom points.
 
-| App                    | Method                      | Import Type           | Ready Today          |
-| ---------------------- | --------------------------- | --------------------- | -------------------- |
-| Astro Gold (macOS/iOS) | Enable built-ins in UI      | — (no user import)    | ✅ built-ins only     |
-| Solar Fire (Windows)   | `extras.dat` (Other Bodies) | Orbital elements      | ✅ with care          |
-| TimePassages (Mac/Win) | Enable built-ins in UI      | — (no user import)    | ✅ built-ins only     |
-| Stellarium (all)       | Solar System Editor import  | MPC 1-line elements   | ✅                    |
-| KStars (all)           | `comets.dat` line           | KStars comet line     | ✅                    |
-| SkySafari (Plus/Pro)   | Update Orbit Data           | MPC elements (online) | ✅ when MPC publishes |
-
-See `docs/INSTALL_3I-ATLAS.md` and `docs/WORKFLOWS.md` for exact steps.
+Update the templates with the converter script whenever a new orbital solution is released.

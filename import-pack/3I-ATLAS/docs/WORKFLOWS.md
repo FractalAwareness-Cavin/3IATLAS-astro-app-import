@@ -1,56 +1,52 @@
 # App workflows for 3I/ATLAS
 
+All values in this pack come from JPL SBDB solution 27 (2025-10-10). Update the
+files with the converter script if a newer solution is released.
+
 ## Stellarium (Windows/macOS/Linux)
 
-**Accepts:** MPC 1‑line comet elements  
-**Method:** *Configuration → Plugins → Solar System Editor (enable, restart) → Configure → Solar System → Import elements in MPC format → File → Select your file → Add object(s).*  
-**Files:** `templates/stellarium/3I_ATLAS_mpc_elements.txt`  
-**Tip:** If the online lists don’t include 3I yet, use the **File** option.
+**Accepts:** MPC 1-line comet elements  
+**Steps:**
+1. **Configuration → Plugins → Solar System Editor** → tick **Load at startup** (restart if needed).  
+2. **Solar System Editor → Configure → Solar System → Import elements in MPC format → File**.  
+3. Select `templates/stellarium/3I_ATLAS_mpc_elements.txt`.  
+4. Click **Add object(s)** and search for **3I/ATLAS**.
 
 ## KStars (Windows/macOS/Linux)
 
-**Accepts:** `comets.dat` line (KStars format)  
-**Methods:**
+**Accepts:** `comets.dat` line  
+**Helpers:**
+- Windows: `tools/kstars/KStars_Append_3I-DRYRUN.bat` (preview), then `…-APPLY.bat`.  
+- macOS: double-click `tools/kstars/KStars_Append_3I.command`.  
+- Linux: run `bash tools/kstars/KStars_Append_3I.sh`.  
+All helpers back up the file before appending.
 
-* *Data → Download New Data…* (when upstream includes 3I).  
-* **Manual:** append/replace your local `comets.dat` with the generated line (backup first).
-
-**User file locations (typical):**
-
-* Linux: `~/.local/share/kstars/comets.dat`  
-* Windows: `%LOCALAPPDATA%\kstars\comets.dat`  
-* macOS: `~/Library/Application Support/kstars/comets.dat`
+Manual:
+1. Back up your `comets.dat` (`~/.local/share/kstars/comets.dat` on Linux, `%LOCALAPPDATA%\kstars\comets.dat` on Windows, `~/Library/Application Support/kstars/comets.dat` on macOS).  
+2. Append the single line in `templates/kstars/3I_ATLAS_comets_dat_snippet.txt`.  
+3. Restart KStars and search for **3I/ATLAS**.
 
 ## SkySafari / SkyVoyager (iOS/Android)
 
 **Accepts:** No manual import  
-**Method:** *Settings → Solar System → Update Orbit Data* (Plus/Pro tiers).  
-Keep `templates/skysafari/3I_ATLAS_mpc_1line.txt` for reference only.
+Use *Settings → Solar System → Update Orbit Data* (Plus/Pro tiers). Keep
+`templates/skysafari/3I_ATLAS_mpc_1line.txt` for reference only.
 
 ## Solar Fire (Windows)
 
-**Accepts:** `extras.dat` (Other Bodies)  
-**Method (summary):**
+**Accepts:** `extras.dat` orbital elements (Other Bodies)  
+**Helpers:**
+- Windows: `tools/solarfire/SF_Merge_3I-DRYRUN.bat` (preview) then `…-APPLY.bat` to merge `[3I_ATLAS]` automatically.  
+Both scripts back up `extras.dat` with a timestamp.
 
-1. Backup: usually `Documents\Solar Fire User Files\Points & Colors\extras.dat`.  
-2. Inspect via **File Manager → Extra Bodies File…** (to see field order in your version).  
-3. Edit `extras.dat` *only after confirming field order*.  
-4. In **Displayed Points…**, enable *Other Bodies* and tick your object. Restart Solar Fire if needed.
+Manual:
+1. Quit Solar Fire and back up `Documents\Solar Fire User Files\Userdata\extras.dat`.  
+2. Copy or merge the `[3I_ATLAS]` block from `templates/solar_fire/3I_ATLAS_extras_dat_PLACEHOLDER.txt`.  
+3. Relaunch and enable **3I/ATLAS** under **Extra Bodies** in your point selection dialog.
 
-## Astro Gold (macOS / iOS)
+## Apps without import hooks
 
-**Accepts:** Built‑ins only; no user import for moving bodies  
-**Method:**
-
-* macOS: *Astro Gold → Preferences → Displayed Points → Add Extra Points*  
-* iOS: *Settings → Chart Points*  
-  “Custom Points” are **fixed**; not orbiting bodies.
-
-## TimePassages (macOS / Windows)
-
-**Accepts:** Built‑ins only; “Custom Points” are fixed  
-**Method:**
-
-* macOS: *TimePassages → Preferences → Edit Chart Points*  
-* Windows: *Edit → Chart Points*  
-  Also toggle *Display → Chart Points* to show them.
+Astro Gold (macOS/iOS/iPadOS) and TimePassages Desktop (macOS/Windows) currently
+only expose vendor-supplied extra points. They do not accept user-supplied
+moving-body ephemerides. See the repo folder `Time-Passages-Astro-Gold/` for
+workarounds (fixed custom points) and vendor contact links.
