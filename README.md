@@ -63,7 +63,6 @@ Use the folder that matches your app or download the zip files below. If you are
 
 #### End-user direct downloads
 - [Solar Fire merge helper (Windows)](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/SolarFire_merge-helper_Windows.zip)
-- [KStars quick append bundle (Win/macOS/Linux)](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/KStars_quick-append_Win-Mac-Linux.zip)
 - [Stellarium quick import](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/Stellarium_quick-import.zip)
 - [MPC ephemeris (80-column)](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_mpc_files.zip)
 - [CSV research kit](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/3I-ATLAS_apps_using_csv_files.zip)
@@ -101,18 +100,7 @@ specific steps—unzip before running the helper scripts or copying files.
 5. Use `F3` (search) to confirm `3I/ATLAS` now resolves; toggle it on in the Solar System list if required. Restart Stellarium if the search does not find it on the first try.
 
 ### KStars (Win/macOS/Linux)
-1. Download the ready-made KStars helper kit: [`KStars_quick-append_Win-Mac-Linux.zip`](https://github.com/FractalAwareness-Cavin/3IATLAS-astro-app-import/releases/download/v1.0.0/KStars_quick-append_Win-Mac-Linux.zip). Unzip it before running the helpers (the same scripts also live in `tools/kstars/` for power users).
-2. Run the script that matches your OS:
-   - Windows: `Windows_KStars_Append_3I-DRYRUN.bat`, then `Windows_KStars_Append_3I-APPLY.bat`.
-   - macOS: double-click `MacOS_SEEREADME_KStars_Append_3I.command`. If Gatekeeper warns “Apple could not verify…”, click **Done**, then open **System Settings → Privacy & Security**, scroll to the bottom, and press **Open Anyway**. macOS reopens the helper automatically—choose **Open** in the confirmation dialog and approve with Touch ID or your account password if asked. Those prompts come from macOS; the helper never sees or stores your credentials. Terminal opens automatically afterwards—follow its prompt by typing `y` and pressing **Enter** when you are ready to apply the change.
-   - Linux: `bash tools/kstars/Linux_KStars_Append_3I.sh`.
-   The helper starts in dry-run mode, shows the exact line it will append, and asks `Apply changes? (y/N)`. Type `y` and press **Enter** to proceed; you should see messages like `[OK] Backup created at …` and `[OK] Appended 3I/ATLAS…`. If you close the window without answering, no changes are made.
-3. Each helper backs up `comets.dat` before appending the new line. If your KStars install uses a different path (for example `~/Library/Application Support/kstars/comets.dat` on some macOS builds), rerun the script with `--target "full/path/to/comets.dat"`.
-4. Manual alternative: append `apps-using-mpc-files/kstars/3I_ATLAS_comets_dat_line.txt` to your `comets.dat` (default paths: `~/.local/share/kstars/` on Linux, `%LOCALAPPDATA%\kstars\` on Windows, `~/Library/Application Support/kstars/` on macOS).
-5. Quit KStars completely and relaunch it. To jump to the comet:
-   - Press the search icon (or **Pointing → Find Object…** / `Ctrl+F`), type `3I/ATLAS`, and press **Ok** to center and track it. KStars will warn if the comet is below the horizon—acknowledge and continue.
-   - Alternatively, click the comet on the skymap (once visible) and use the **Center & Track** entry in its right-click popup menu.
-   - For a heliocentric overview, open **Tools → Solar System** (`Ctrl+Y`) to launch the Solar System Viewer; 3I/ATLAS appears alongside the planets and you can zoom or adjust the timestep there.
+KStars already ships with 3I/ATLAS via its MPC comet feed (confirmed October 2025). Use **Pointing → Find Object…** (`Ctrl+F`) and type `3I/ATLAS`—if the comet is below the horizon, adjust the time or filters. No extra helper or manual import is required.
 
 ### Solar Fire (Windows)
 
@@ -157,7 +145,6 @@ TimePassages also limits users to the built-in catalogues. Download [`3I-ATLAS_a
 If you grabbed the download bundles listed above, you already have the platform-specific helpers. The raw files live in `import-pack/3I-ATLAS/`:
 
 - `Stellarium_quick-import.zip` — MPC one-line plus README.
-- `KStars_quick-append_Win-Mac-Linux.zip` — cross-platform scripts that back up and append the `comets.dat` entry.
 - `SolarFire_merge-helper_Windows.zip` — helper that backs up `extras.dat` and merges the `[3I_ATLAS]` block.
 
 ### CSV usage notes
