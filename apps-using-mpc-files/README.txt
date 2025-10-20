@@ -1,14 +1,14 @@
 3I/ATLAS – MPC IMPORT GUIDE
 ===========================
 
-`geocentric_mpc_ephemeris.txt` provides the daily MPC-style ephemerides (UT 0h, J2000 RA/Dec, Δ, r, elongation, phase). Every helper and quick-import bundle in this repository is built from that file. The same instructions ship inside the download archives (`Stellarium_quick-import.zip`, `KStars_quick-append_Win-Mac-Linux.zip`, and `3I-ATLAS_apps_using_mpc_files.zip`) so users who only download a zip see identical guidance.
+`geocentric_mpc_ephemeris.txt` provides the daily MPC-style ephemerides (UT 0h, J2000 RA/Dec, Δ, r, elongation, phase). Every helper and quick-import bundle in this repository is built from that file. The same instructions ship inside the download archives (`Stellarium_quick-import.zip` and `3I-ATLAS_apps_using_mpc_files.zip`) so users who only download a zip see identical guidance.
 
 All one-line templates reference **JPL SBDB solution 27 (retrieved 2025-10-10)**. Refresh them by running `python tools/update_orbital_elements.py` after JPL posts a newer solution; rerun the relevant helper or re-import the single-line file afterwards.
 
 What’s included
 ---------------
 - `geocentric_mpc_ephemeris.txt` – full daily table (80-column MPC layout) for any MPC-aware software.
-- `cartes-du-ciel/`, `kstars/`, `winstars/` – single-line snippets and notes for those apps.
+- `cartes-du-ciel/`, `winstars/` – single-line snippets and notes for those apps.
 - Download bundles under `release-assets/` mirror the quick-start helpers described below.
 
 Stellarium (Win/macOS/Linux)
@@ -20,21 +20,7 @@ Stellarium (Win/macOS/Linux)
 
 KStars (Win/macOS/Linux)
 ------------------------
-From the download zip, run the helper that matches your platform in `tools/` (the repository copy lives under `tools/kstars/`).
-1. Start with a preview:  
-   - Windows: `Windows_KStars_Append_3I-DRYRUN.bat`  
-   - macOS: double-click `MacOS_SEEREADME_KStars_Append_3I.command` (approve Gatekeeper if prompted)  
-   - Linux: `bash tools/Linux_KStars_Append_3I.sh --dry-run`
-2. If the preview looks correct, run the apply step:  
-   - Windows: `Windows_KStars_Append_3I-APPLY.bat`  
-   - macOS: rerun the `.command` script and answer **y** when prompted  
-   - Linux: `bash tools/Linux_KStars_Append_3I.sh --apply`
-3. Restart KStars. Use the skymap tools to work with the comet:
-   - Press the search icon (or **Pointing → Find Object…** / `Ctrl+F`), type `3I/ATLAS`, and press **Ok** to center and track it. Accept the below-horizon warning if it appears.
-   - Once it is visible, you can also right-click the comet and choose **Center & Track** to keep it locked.
-   - For a heliocentric view, open **Tools → Solar System** (`Ctrl+Y`) to launch the Solar System Viewer and inspect the orbit alongside the planets.
-
-Manual alternative: go to **Settings → Configure KStars → Solar System** (older builds use **Data → Solar System Updates**). In the **Comets** tab choose **Import**, select `geocentric_mpc_ephemeris.txt`, and confirm. KStars saves to `comets.dat`; the helper scripts back that file up automatically before writing.
+KStars already lists 3I/ATLAS in its bundled MPC comet feed (October 2025). Use **Pointing → Find Object…** (`Ctrl+F`) to search for `3I/ATLAS`. No helper download or manual import is required.
 
 Cartes du Ciel / SkyCharts
 --------------------------
