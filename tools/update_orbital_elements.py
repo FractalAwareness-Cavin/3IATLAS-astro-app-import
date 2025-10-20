@@ -2,7 +2,6 @@
 """Fetch latest orbital solution for 3I/ATLAS from JPL SBDB and refresh local templates."""
 import argparse
 import json
-import math
 import urllib.request
 from pathlib import Path
 
@@ -17,10 +16,6 @@ MPC_FILE_PATHS = [
     REPO_ROOT / 'import-pack/3I-ATLAS/templates/skysafari/3I_ATLAS_mpc_1line.txt',
     REPO_ROOT / 'apps-using-mpc-files/cartes-du-ciel/3I_ATLAS_mpc_1line.txt',
     REPO_ROOT / 'apps-using-mpc-files/winstars/3I_ATLAS_mpc_1line.txt'
-]
-KSTARS_FILES = [
-    REPO_ROOT / 'import-pack/3I-ATLAS/templates/kstars/3I_ATLAS_comets_dat_snippet.txt',
-    REPO_ROOT / 'apps-using-mpc-files/kstars/3I_ATLAS_comets_dat_line.txt'
 ]
 SOLAR_FIRE_FILES = [
     REPO_ROOT / 'solar-fire/extras.dat',
@@ -59,16 +54,6 @@ def make_mpc_line(fullname, q, e, inc, argperi, node, tp_jd, H, G):
     year, month, day = jd_to_calendar_decimal(tp_jd)
     day_decimal = day
     return f"{fullname} {year:04d} {month:02d} {day_decimal:.5f} {q:.7f} {e:.7f} {argperi:.7f} {node:.7f} {inc:.7f} {H:.1f} {G:.1f}"
-
-
-def make_kstars_line(q, e, inc, argperi, node, tp_jd):
-    mjd = int(round(tp_jd - 2400000.5))
-    year, month, day = jd_to_calendar_decimal(tp_jd)
-    day_decimal = day
-    return ("3I/ATLAS | {mjd} | {q:.7f} | {e:.7f} | {inc:.7f} | {node:.7f} | {argperi:.7f} | "
-            "{year:04d} {month:02d} {day:.5f} | MPC | 0").format(
-        mjd=mjd, q=q, e=e, inc=inc, node=node, argperi=argperi,
-        year=year, month=month, day=day_decimal)
 
 
 def make_extras_block(epoch_jd, q, e, inc, argperi, node, tp_jd, H, G):
@@ -120,7 +105,6 @@ def main():
     G = G_DEFAULT
 
     mpc_line = make_mpc_line(fullname, q, e, inc, argperi, node, tp, H, G)
-    kstars_line = make_kstars_line(q, e, inc, argperi, node, tp)
     extras_block = make_extras_block(epoch, q, e, inc, argperi, node, tp, H, G)
 
     print('Fetched orbital elements:')
@@ -135,17 +119,11 @@ def main():
     if args.dry_run:
         print('\n[DRY-RUN] Files not modified.')
         print('MPC line:', mpc_line)
-        print('KStars line:', kstars_line)
         return
 
     for path in MPC_FILE_PATHS:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(mpc_line + "\n", encoding='utf-8')
-        print('Updated', path)
-
-    for path in KSTARS_FILES:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(kstars_line + "\n", encoding='utf-8')
         print('Updated', path)
 
     for path in SOLAR_FIRE_FILES:

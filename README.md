@@ -76,9 +76,9 @@ specific steps—unzip before running the helper scripts or copying files.
 - **apps-using-mpc-files/** – `geocentric_mpc_ephemeris.txt` in MPC 80-column format (daily UT 0h, J2000 RA/Dec, Δ, r, elongation, phase angle).
 - **apps-using-csv-files/** – heliocentric/geocentric/barycentric CSV vectors, tropical & sidereal longitudes, sign-ingress summaries.
 - **developer/** – raw Horizons outputs, regeneration scripts, vendored `pyswisseph`, and `build_swisseph.sh`.
-- **tools/** – cross-platform helper launchers plus `update_orbital_elements.py` (refresh SBDB solution) and `verify_ephemeris.py` (Horizons spot check).
+- **tools/** – Solar Fire helper launchers plus `update_orbital_elements.py` (refresh SBDB solution) and `verify_ephemeris.py` (Horizons spot check).
 - **Time-Passages-Astro-Gold/** – limitations and fixed-point tips for apps that cannot yet import moving bodies.
-- **import-pack/3I-ATLAS/** – optional templates, advanced documentation, and a converter script for Stellarium, KStars, and Solar Fire power users.
+- **import-pack/3I-ATLAS/** – optional templates, advanced documentation, and a converter script for Stellarium and Solar Fire power users.
 - **docs/localized/** – translated documentation (Czech, Dutch, French, German, Greek, Italian, Polish, Russian, Spanish, Klingon placeholder) mirroring the English structure.
 
 ## Glossary

@@ -5,5 +5,4 @@ formats:
 	python tools/3i_elements_to_formats.py --line "$(LINE)"
 clean:
 	rm -f templates/stellarium/3I_ATLAS_mpc_elements.txt \
-	templates/skysafari/3I_ATLAS_mpc_1line.txt \
-	templates/kstars/3I_ATLAS_comets_dat_snippet.txt
+	templates/skysafari/3I_ATLAS_mpc_1line.txt

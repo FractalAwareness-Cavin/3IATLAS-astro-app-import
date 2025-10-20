@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-3I/ATLAS helper: turn a single MPC 1-line comet element into files for Stellarium, KStars, etc.
+3I/ATLAS helper: turn a single MPC 1-line comet element into files for Stellarium and related tools.
 
 Usage:
 python tools/3i_elements_to_formats.py --paste         # prompts for the 1-line, then writes files
@@ -9,7 +9,7 @@ python tools/3i_elements_to_formats.py --line "C/2025 N1 (ATLAS) …"
 Outputs:
 templates/stellarium/3I_ATLAS_mpc_elements.txt
 templates/skysafari/3I_ATLAS_mpc_1line.txt
-templates/kstars/3I_ATLAS_comets_dat_snippet.txt
+# (KStars already ships with 3I/ATLAS in recent builds.)
 '''
 import argparse, re, sys, os
 
@@ -104,27 +104,7 @@ def write_files(mpc_line: str, parsed: dict):
     with open(out("templates/skysafari/3I_ATLAS_mpc_1line.txt"), "w", encoding="utf-8") as f:
         f.write("# 3I/ATLAS — MPC 1-line (archive)\n")
         f.write(mpc_line.strip()+"\n")
-    # KStars snippet, same format as repo helpers
-    mjd = mjd_from_datestr(parsed.get("date_token")) or 60977
-    q = parsed.get('q') or 0.0
-    e = parsed.get('e') or 0.0
-    i = parsed.get('i') or 0.0
-    node = parsed.get('node') or 0.0
-    argperi = parsed.get('argperi') or 0.0
-    if parsed.get('date_tuple'):
-        year, month, day = parsed['date_tuple']
-    else:
-        year, month, day = 2025, 10, 29.48354
-    line = "3I/ATLAS | {mjd} | {q:.7f} | {e:.7f} | {i:.7f} | {node:.7f} | {argperi:.7f} | {year:04d} {month:02d} {day:.5f} | MPC | 0".format(
-        mjd=int(round(mjd)), q=q, e=e, i=i, node=node, argperi=argperi,
-        year=int(year), month=int(month), day=float(day)
-    )
-    with open(out("templates/kstars/3I_ATLAS_comets_dat_snippet.txt"), "w", encoding="utf-8") as f:
-        f.write("# 3I/ATLAS — KStars comets.dat line (generated)\n")
-        f.write(line+"\n")
-    print("[OK] Wrote Stellarium/SkySafari/KStars files.")
-    print("KStars (paste into comets.dat):")
-    print(line)
+    print("[OK] Wrote Stellarium/SkySafari files.")
 
 def main():
     ap = argparse.ArgumentParser()

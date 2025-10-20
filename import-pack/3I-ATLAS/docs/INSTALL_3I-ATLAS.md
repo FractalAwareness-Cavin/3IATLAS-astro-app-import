@@ -6,7 +6,7 @@ offline-friendly and based on JPL SBDB solution 27 (2025-10-10).
 
 > **TL;DR**
 > - **Stellarium** → import the supplied one-line via *Solar System Editor → Import elements in MPC format*.
-> - **KStars** → run the no-install helper (Windows/macOS/Linux) or paste the provided `comets.dat` line.
+> - **KStars** → already includes 3I/ATLAS via the MPC feed; use **Pointing → Find Object…**.
 > - **SkySafari** → use *Settings → Solar System → Update Orbit Data* (Plus/Pro) and keep the one-line for reference.
 > - **Solar Fire** → merge the provided `[3I_ATLAS]` block into `extras.dat` (backup first); helper scripts included.
 > - **Astro Gold / TimePassages** → currently no moving-body import; see the main repo notes for fixed-point workarounds.
@@ -15,7 +15,6 @@ offline-friendly and based on JPL SBDB solution 27 (2025-10-10).
 
 - `templates/stellarium/3I_ATLAS_mpc_elements.txt` — MPC 1-line comet element for 3I/ATLAS.
 - `templates/skysafari/3I_ATLAS_mpc_1line.txt` — same one-line for archival/reference.
-- `templates/kstars/3I_ATLAS_comets_dat_snippet.txt` — single line ready to append to `comets.dat` (also used by Cartes du Ciel / WinStars).
 - `templates/solar_fire/3I_ATLAS_extras_dat_PLACEHOLDER.txt` — drop-in `[3I_ATLAS]` block for Solar Fire `extras.dat`.
 - `tools/3i_elements_to_formats.py` — optional converter if you paste a newer MPC 1-line.
 - `tools/update_orbital_elements.py` — fetches the latest JPL SBDB solution and rewrites every template in-place.
@@ -30,7 +29,7 @@ python tools/update_orbital_elements.py --dry-run  # preview the latest elements
 python tools/update_orbital_elements.py            # rewrite templates
 ```
 If you prefer to replace the files manually, `tools/3i_elements_to_formats.py`
-will generate the Stellarium/KStars/Solar Fire snippets from any MPC 1-line.
+will generate the Stellarium/Solar Fire snippets from any MPC 1-line.
 
 ## Caveats
 

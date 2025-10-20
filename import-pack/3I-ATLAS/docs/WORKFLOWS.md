@@ -14,17 +14,9 @@ files with the converter script if a newer solution is released.
 
 ## KStars (Windows/macOS/Linux)
 
-**Accepts:** `comets.dat` line  
-**Helpers:**
-- Windows: `tools/kstars/Windows_KStars_Append_3I-DRYRUN.bat` (preview), then `Windows_KStars_Append_3I-APPLY.bat`.  
-- macOS: double-click `tools/kstars/MacOS_SEEREADME_KStars_Append_3I.command`.  
-- Linux: run `bash tools/kstars/Linux_KStars_Append_3I.sh`.  
-All helpers back up the file before appending.
-
-Manual:
-1. Back up your `comets.dat` (`~/.local/share/kstars/comets.dat` on Linux, `%LOCALAPPDATA%\kstars\comets.dat` on Windows, `~/Library/Application Support/kstars/comets.dat` on macOS).  
-2. Append the single line in `templates/kstars/3I_ATLAS_comets_dat_snippet.txt`.  
-3. Restart KStars and search for **3I/ATLAS**.
+KStars 2025 builds already include 3I/ATLAS in the bundled MPC comet feed. Use
+**Pointing → Find Object…** (`Ctrl+F`) and search for `3I/ATLAS`; no helper
+scripts or manual append are needed.
 
 ## SkySafari / SkyVoyager (iOS/Android)
 
